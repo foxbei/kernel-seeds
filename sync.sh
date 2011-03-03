@@ -1,0 +1,1 @@
+/home/foxbei/Project/sync.sh

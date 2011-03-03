@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Bluefish 2.0.1" >
+<meta name="keywords" content="linux,kernel,.config,config,linux kernel,linux kernel configuration">
+<title>Kernel Seeds Settings Page 1</title>
+<style type="text/css">
+body		{ color: #fff; background-color: #000; }
+h1, h2, h3, h4, h5		{ text-align: center; }
+img			{ margin: 1em; }
+a			{ color: #999; }
+a:link		{ color: #999; } 
+a:visited	{ color: #fff; }
+
+.banner		{ height: 253px; width: 100%; background-image: url(ns-t3b-big.jpg); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer		{ font-size: x-small; text-align: center; font-style: italic; }
+.home		{ font-style: normal; font-size: large; font-weight: bold; }
+.red	{ color: #f00; }
+.grn		{ color: #0f0; }
+.mag		{ color: #f0f; }
+.wht       { color: #fff; }
+.gry       { color: #999; }
+.yel       { color: #ff0; }
+
+</style>
+</head>
+<body>
+<div class="banner">
+<h1>Kernel Seed Settings</h1>
+</div>
+
+<p align="center"><h5><strong><a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<h2><span class="grn">Page 1:</span></h2>
+
+<p>The following pages will use a stylized form of <span class="grn">make menuconfig</span> as the configuration program. This is because the standard Gentoo install comes as a CLI system only, and you will see the <span class="grn">make menuconfig</span> screen before any other kernel configuration screen (make xconfig, etc.). The stylization helps clarity when explaining the kernel configuration process in the colored text that makes up the rest of the pages.</p> 
+
+<p>Upon starting <span class="grn">make menuconfig</span>, you will see the following:</p>
+
+<p align="center"><img src="page_1.png" alt="Initial make menuconfig page" /></p>
+
+<p>Since there isn't a lot to configure on the initial page, hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt</span>, and move on to what I refer to as page 1.</p>
+
+<p align="center"><img src="page_1a.png" alt="Page 1" /></p>
+
+<p><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="50"  /><span class="mag">[*] Prompt for development and/or incomplete code/drivers</span></p>
+
+<p>If you desire to use any experimental and new code, this is a must have setting. Turning this setting on will allow you to use any and all experimental code. That includes both drivers and functional kernel code. This setting is turned on by default. It is wise to keep it that way.</p>
+
+<p><span class="mag">()  Local version - append to kernel release
+<br />[ ] Automatically append version information to the version string</span></p>
+
+<p>Use these setting if you want to give your kernel a unique name. This is best used to keep track of your kernels if you use different kernel settings for different operational parameters. If you need this kind of support, turn this setting on and then add the string you wish to use in the code box that opens up. These settings are turned off by default.</p>
+
+<p><span class="mag">Kernel compression mode (Gzip) ---> </span></p>
+
+<p>Available options: Gzip, Bzip, and Lzma.<br />If you wish to change the compression algorithm that compresses the kernel into its final form. The default compression mode is Gzip.</p>
+
+<p><span class="mag">[*]Support for paging of anonymous memory (swap)</span></p>
+
+<p>This setting allows for the use of swap. The use of swap is recommended. This setting is turned on by default.</p>
+
+<p><span class="mag">[*] System V IPC</span></p>
+
+<p>This setting allows for the System V interprocess communication. This is a very important setting, and is turned on. As such, this setting will most likely never be changed.</p>
+
+<p><span class="mag">[*] POSIX Message Queues</span></p>
+
+<p>Another message queueing system. It is turned on for those that require this support.</p> 
+
+<p><span class="mag">[*] BSD Process Accounting.</span></p>
+
+<p>This setting allows for admins to find out who is doing what on their systems. Experimentation with this setting has shown that it can be turned off without issue. As a matter of fact, turning this setting off is helpful for those using the BFS in Zen kernels. This setting is turned on by default, but will most likely be turned off in future seed iterations.</p>
+
+<p><span class="mag">RCU subsystem---></span></p>
+
+<p>This setting allows lock-free read-only access to data structures that are concurrently modified on SMP systems. It is turned on because it allows for better throughput. The default setting is for a fully preemptable RCU. Since it is only geared towards SMP systems, technically, monoprocessor systems can get away without it. The list of available RCU options is dictated on whether or not you've chosen to use kernel preemption. If not, the list is small. If kernel preemption is on, it is recommended you use the<br /><span class="mag">(*) Preemptible RCU</span> setting.</p>
+
+<p><span class="mag"><*> Kernel .config support.</span></p>
+
+<p>This setting copies the .config which made the kernel in question into the kernel itself. If you accidentally delete your .config file, as long as you can get the kernel to boot, you will be able to resurrect your .config settings. This setting is set to on by default. Turn this setting off if you can assure yourself that you will never accidentally destroy or delete your kernel .config. file. It's on because even I've lost a .config.</p>
+
+<p><span class="mag">[*] Enable access to .config through /proc/config.gz</span></p>
+
+<p>This setting is an adjunct to the setting above. If using the above setting, this setting should also be used. It defaults to on.</p>
+
+<p><span class="mag">(18)Kernel log buffer size</span></p>
+
+<p>This setting sets the size of the kernel log buffer. The integer 18 sets the size of this buffer to 256k, which should be good for most users. This setting is set as shown, and can be adjusted to fit your circumstances. In most cases, that won't be necessary.</p>
+
+<p><span class="mag">[ ] Group CPU scheduler<br />
+[ ] Control Group support ---></span></p>
+
+<p><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="50"  />Consider both of these settings as poison to your computer. While the idea has merit, at the time of this writing, there remain no userspace programs to interface with the setup. As such, these settings and their analogues tend to slow systems down. For this reason, these settings are turned off by default, and their use is highly discouraged. Kernel seeds are about speed and efficiency, and the above settings are neither fast or efficient.</p>
+
+<p><span class="mag">[ ] remove sysfs features which may confuse older userspace tools</span></p>
+
+<p>This setting has an analogue in older kernel versions:</p>
+
+<p><span class="mag">[ ] Create deprecated sysfs layout for older userspace tools</span></p>
+
+<p><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="40"  />No matter what the name, if you are using udev, this setting must be turned off. Turning this setting on will break udev, or at least slow it down to a crawl. Either result is not desired. This setting is off by default, and shall remain so as long as udev is a part of Linux.</p>
+
+<p><span class="mag">Kernel->user space relay support (formerly relayfs)</span></p>
+
+<p>This setting is a vestige from older times. It is not required for a modern system, and as such, it is turned off by default. Its use is not recommended.</p>
+
+<p><span class="mag">Namespaces support<br />
+[ ] UTS namespace<br />
+[ ] IPC namespace<br />
+[ ] User namespace<br />
+[ ] PID namespace<br />
+[ ] Network namespace.</span></p>
+
+<p>These settings have pretty much the same effect as the Group CPU scheduler, and as such, affect the speed of the kernel. These settings are turned off by default.</p>
+
+<p><span class="mag">[ ] Initial RAM filesystem and RAM disk (initramfs/initrd) support</span></p>
+
+<p>Since the use of initrd/intramfs in Gentoo is for either the boot splash screen, or for those using RAID drivers as modules, I do not support it. Configured properly, a kernel doesn't require initrd/initramfs. Those who use the bootsplash screen or RAID drivers as modules should turn this setting on. I do not support initrd/initramfs.</p>
+
+<p><span class="mag">[ ] Optimize for size.</span></p>
+
+<p><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="55"  />Since the average size of the finished kernel image is in the range of two to three megabytes, and current hard drives are rated in terabytes, and optimizing for size doesn't shave that much off the final size of the finished image, and because at one time this setting was followed by a warning about broken compilers in the "olden" days (about .25), and because this setting has also been noted for introducing instability into the kernel, this setting defaults to off, and shall remain that way.</p>
+
+<p><span class="mag">[ ] Configure standard kernel features (for small systems) ---> </span></p>
+
+<p>When expanded, you get the following settings:<p><span class="mag">[*] Enable 16-bit UID system calls<br />[*] Sysctl syscall support </span></p>
+
+<p>These settings don't need to be changed. They are kernel defautls, and even come with a warning. While there are special cases when these settings might be useful, they are special cases, and well out of the realm of the generic nature of the basic kernel seed.</p>
+
+<p>You will also find the following under </p>
+
+<p><span class="mag">[ ] Configure standard kernel features (for small systems) ---></span></p>
+
+<p><span class="mag">Load all symbols for debugging/ksymoops<br />
+[*] Include all symbols in kallsyms<br />
+[ ] Do an extra kallsyms pass</span></p>
+
+<p><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="55"  />These settings provide user readable messages during kernel oopses or kernel panics. As such, it is highly recommended to at least turn on <span class="mag">[*] Include all symbols in kallsyms</span>. If you find your kallysyms aren't working properly, then you can also turn on <span class="mag">[ ] Do an extra kallsyms pass</span>. Since this is an unusual case, this setting is turned off. If you are having serious kernel issues and panics, turn this on to insure your ability to troubleshoot.</p>
+
+<p><span class="mag">Performance counters ---></span></p>
+
+<p>Since this is new code as of .31, I have not experimented with these settings. It has been written that using them interferes with the operation of the BFS (Brain Fuck Scheduler) in Zen kernels. Since I don't want anything messing with BFS, I keep these settings turned off. Anyone wishing to try them out and report their findings is welcome to do so. They appear benign.</p>
+
+<p><span class="mag">[ ] Strip assembler-generated symbols during link</span></p>
+
+<p>This code is also new as of the .31 kernel source. I have not experimented with it. Anyone wishing to do so, please report your findings, especially if it leads to a speed increase.</p>
+
+<p><span class="mag">[ ] Disable heap randomization</span></p>
+
+<p>This setting is counter-intuitive. If you want heap randomization to be activated, you keep the setting turned off. If you want to turn off heap randomization, turn the setting on. Confused yet? So was I. That's why the original information here was incorrect. This setting was introduced due to a root exploit that is fixed by heap randomization. The default for this setting is off, which enables heap randomization. It is best to leave this setting as is.</p>
+
+<p><span class="mag">Choose SLAB allocator ---></span></p>
+
+<p>This option allows you to select a slab allocator. When opened, you have the following options:</p>
+
+<p><span class="mag">( )SLAB<br />
+(*)SLUB</span></p>
+
+<p> For most people, <span class="mag">(*)SLUB</span> works the fastest. Therefore, <span class="mag">(*)SLUB</span> is the seed default.</p>
+
+<p><span class="mag">[*] Profiling support (EXPERIMENTAL)<br />
+[*] Activate markers<br />
+< > Oprofile system profiling (EXPERIMENTAL)<br />
+[*] Kprobes</span></p>
+
+<p>These settings were adapted from the original make defconfig, Apparently, they are used for troubleshooting. I am currently experimenting with the settings to see what happens when they are turned off. For now, they default to on.</p>
+
+<p><span class="mag">GCOV-based kernel profiling ---></span></p>
+
+<p>These settings are also part of new code introduced in the .31 kernel series. I have not experimented with them.</p>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-6605932917682734:tvk0q3m8znk" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="text" name="q" size="40" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+
+<p align="center"><h5><strong><span class="grn">Page 1</span> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+
+<p>Cheers,<br />
+Pappy</p>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6605932917682734";
+/* 728x15, created 1/2/10 */
+google_ad_slot = "0330695922";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<div class="footer">
+<p class="home"><a href="index.html">Home</a></p>
+<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> 
+
+<p>Copyright &copy; Bear Upstairs Studio. Original page: 11-10-2009. Page last updated: 11-29-2010. All rights reserved.</p>
+</div>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+</body>
+</html>

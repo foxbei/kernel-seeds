@@ -1,0 +1,11 @@
+Zen kernels are a special case. In some cases, the source may not be available due to changes in the old zen gits. I do have all the source for all the listed kernels. 
+
+BFS and Zen:
+
+Zen source kernels have intergrated the BFS, Brain Fuck Scheduler by Con Kolivas. The development of BFS was in flux during the making of the Zen source kernels. Unfortunately, some machines will not boot with certain versions, specifically: 2.6.30-zen6, 2.6.30-zen7, and 2.6.30-zen8 as well as 2.6.31-zen1. Usually these are machines with SMP support enabled. Uniprocessor x86 machines will work with zen kernels, no matter the version.
+
+Tweaking:
+
+These seeds come pre-tweaked. They should be the fastest kernels you've ever seen in operation.
+
+Zen sources, why drive when you can fly?

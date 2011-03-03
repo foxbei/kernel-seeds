@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Bluefish 2.0.1" >
+<meta name="keywords" content="linux,kernel,.config,config,linux kernel,linux kernel configuration">
+<title>Kernel Seeds Settings Page 4</title>
+<style type="text/css">
+body		{ color: #fff; background-color: #000; }
+h1, h2, h3, h4, h5		{ text-align: center; }
+img			{ margin: 1em; }
+a			{ color: #999; }
+a:link		{ color: #999; } 
+a:visited	{ color: #fff; }
+
+.banner		{ height: 253px; width: 100%; background-image: url(ns-t3b-big.jpg); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer		{ font-size: x-small; text-align: center; font-style: italic; }
+.home		{ font-style: normal; font-size: large; font-weight: bold; }
+.red	{ color: #f00; }
+.grn		{ color: #0f0; }
+.mag		{ color: #f0f; }
+.wht       { color: #fff; }
+.gry       { color: #999; }
+.yel       { color: #ff0; }
+
+</style>
+</head>
+<body>
+<div class="banner">
+<h1>Kernel Seed Settings</h1>
+</div>
+
+<p><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</b></a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<h2><span class="grn">Page 4:</span></h2>
+
+<p>This page is going to specifically cover <span class="mag">Power management and ACPI options  ---></span>.</p> 
+
+<p align="center"><img src="page_4.png" alt="main page with Power management and ACPI options selected" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up one of two pages, depending on whether you're running <span class="yel">x86</span> or <span class="yel">x86_64</span>:</p>
+
+
+
+<p align="center"><img src="page_4a.png" alt="Power management and ACPI options; x86" /></p>
+
+<p align="center"><span class="yel"><h4>x86</h4></span></p>
+
+<p align="center"><img src="page_4b.png" alt="Power management and ACPI options; x86_64" /></p>
+
+<p align="center"><span class="yel"><h4>x86_64</h4></span></p>
+
+
+<p><span class="mag">[*] Power Management support</span></p>
+
+<p>Power management support is a very good idea. It allows you not only to power down the entirety of your machine, but also allows you to control power to individual components (CPU, drives, etc). Power management is very important for laptop computers that spend any time running on their batteries. This option must be turned on in order to control the computer's power system. X also likes having this option turned on as well. For those reasons, this setting defaults to on.</p>
+
+<p><span class="mag">[ ] Power Management Debug Support</span></p>
+
+<p>Use this setting if you are having power management issues, such as suspend issues, and desire to know the reason. This setting defaults to off.</p>
+
+<p><span class="mag">[ ] Suspend to RAM and standby</span></p>
+
+<p>This setting allows the system to enter a sleep state where all but the memory circuitry is powered down, thus preserving the memory contents. Since this setting is unneeded for system operation, it defaults to off. If you desire this option, turn it on, as well as numerous sub-settings. 
+
+<p>When selected, this option opens a sub-option: <span class="mag">< > APM (Advanced Power Management) BIOS support (NEW)  ---></span></p>
+
+<p>APM BIOS is quite antiquated. It can be found on older i486 and Pentium laptops. If you don't have a machine of these types, don't turn the option on. Since this is obsolete tech, this option defaults to off.</p>
+
+<p><span class="mag">[ ] Hibernation (aka 'suspend to disk')</span></p>
+
+<p>When opened, this option also turns on <span class="mag">< > APM (Advanced Power Management) BIOS support (NEW)  ---></span>, and <span class="mag">( ) Default resume partition (NEW)</span>. The latter setting allows you to tell the computer where to find the suspended image upon reboot. While there are many people who desire this, it is out of the paradigm of a kernel seed since it neither aids speed or stability. In most cases, it adds instability. For these reasons, these associated settings default to off.</p>
+
+<p><span class="mag">[*] ACPI (Advanced Configuration and Power Interface) Support  ---></span></p>
+
+<p>When you <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt</span> this option, you get numerous sub-options.</p>
+
+<p><span class="mag">[*] Deprecated /proc/acpi files</span></p>
+
+<p>This setting is actually best turned on. There are still many programs that look for /proc/acpi/ files. If they don't exist, the package in question will not function correctly. Since there are still packages that use this setting, it defaults to on.</p>
+
+<p><span class="mag">[*] Deprecated power /proc/acpi directories</span></p>
+
+<p>Once again, since there are still programs out there that use /proc/acpi, this setting defaults to on.</p>
+
+<p><span class="mag">[*] Future power /sys interface</span></p>
+
+<p>This setting allows use of the /sys interface. Newer packages use this setting, so it defaults to on.</p>
+
+<p><span class="mag">[*] Deprecated /proc/acpi/event support</span></p>
+
+<p>This is a must have setting for X. The user space daemon, acpid, reads /proc/acpi/event, and handles all ACPI generated events. Some of these include adding functionality to the power button, sleep buttons (if applicable), and laptop lid switches. You need to <span class="grn">emerge acpid</span> in order to have the above switches and options function correctly. This option defaults to on. Changing it is not recommended.</p>
+
+<p><span class="mag">< > AC Adapter<br />
+< > Battery</span></p>
+
+<p>These settings allow the battery and AC adapter to be seen by the computer. For laptop owners, these are must have settings. They default to on in Tuxonice seeds, since those kernels are used mostly for laptops. These settings default to off in all other source seeds, but are highly recommended for use with laptop machines.</p>
+
+<p><span class="mag"><*> Button</span></p>
+
+<p>This setting specifically controls the power, sleep, and laptop lid switches. It is highly recommended for people with ATX based computer motherboards. Since all modern machines are based on ATX, this is another must have. This setting defaults to on.
+
+<p><span class="mag"><*> Video</span></p>
+
+<p>This setting implements ACPI extensions for display adapters. This is very important as it allows the display adapter to read the EDID information from the monitor, and to set the video card for maximum resolution. This setting defaults to on. Changing it is not recommended.</p>
+
+<p><span class="mag">< > Fan</span></p>
+
+<p>This setting supports ACPI fan devices, allowing the user basic fan control. Since most cooling fan feedback control circuits run just fine on their own, and a misconfigured fan setup could cause serious harm to the CPU, this setting defaults to off. Turning it on not recommended.</p>
+
+<p><span class="mag">-*- Dock</span></p>
+
+<p>This setting is hard wired to on. According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This driver supports ACPI-controlled docking stations and removable drive bays such as the IBM Ultrabay and the Dell Module Bay." Even so, I have yet to run into a machine that needs this support. This setting is hard wired on in kernel.</p>
+
+<p><span class="mag"><*> Processor</span></p>
+
+<p>This setting allows the CPU to enter power saving modes C2 and C3. For those who wish to control the speed and power consumption of their CPU, this is the setting. This setting defaults to on even though I don't directly use it.</p>
+
+<p><span class="mag"><*> Thermal Zone</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This driver supports ACPI thermal zones.  Most mobile and some desktop systems support ACPI thermal zones.  It is HIGHLY recommended that this option be enabled, as your processor(s) may be damaged without it." This setting defaults to on for this reason. Turning this option off is not recommended.</p>
+
+<p><span class="yel">x86</span> <span class="mag">(0) Disable ACPI for systems before Jan 1st this year</span></p>
+
+<p>This setting allows you to disable ACPI. It's use is not recommended. The default for this setting is (0), or off. There are far better ways to shut off ACPI support.</p>
+
+<p><span class="mag">[ ] Debug Statements</span></p>
+
+<p>Turn this setting on if you wish to debug your ACPI setup. This setting defaults to off. Turn it on if you have ACPI issues.</p>
+
+<p><span class="mag">< > PCI slot detection driver</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>," This driver creates entries in /sys/bus/pci/slots/ for all PCI slots in the system." While this can solve multiple IRQ PCI issues, its use is not recommended, and it defaults to off.</p>
+
+<p><span class="mag">< > Container and Module Devices (EXPERIMENTAL)</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>, "This helps support hotplug of nodes, CPUs, and memory." Since I don't support or advocate such things, this setting defaults to off.
+11-29-2010
+<p><span class="mag">< > Smart Battery System(EXPERIMENTAL)</span></p>
+
+<p>This is supported by certain laptops. Since mine is not one of those, and since the standard battery settings work quite well, this setting defaults to off.</p>
+
+<p>Move to <span class="gry">&lt;</span><span class="red"> E</span><span class="gry">xit &gt</span> to return to the main menu.</p>
+
+<p><span class="mag">CPU Frequency scaling ---></span></p>
+
+<p>When you <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt</span> this option, you get numerous sub-options. There are different settings for <span class="yel">x86</span> and <span class="yel">x86_64</span>.</p>
+
+<p><span class="mag">[*] CPU Frequency scaling</span></p>
+
+<p>This setting allows you to change the clock frequency of your CPU on the fly. I don't personally run my CPU's at anything less than full speed. Those who wish to use this option will have to turn on various governors as well. This setting defaults to on for user convenience.</p>
+
+<p><span class="mag">[ ] Enable CPUfreq debugging</span></p>
+
+<p>Turn this setting on if you are having issues with CPU frequency scaling or one of the governors. This setting defaults to off.</p>
+
+<p><span class="mag"><*> CPU frequency translation statistics</span></p>
+ 
+ <p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This driver exports CPU frequency statistics information through sysfs file system." This setting was turned on for experimentation purposes. It will most likely be turned off in future seed iterations. For now, this setting defaults to on.</p>
+ 
+<p><span class="mag">[ ] CPU frequency translation statistics details</span></p>
+
+<p>This setting is an adjunct to the setting above. It defaults to off.</p>
+
+<p><span class="mag">Default CPUFreq governor ---> </span></p>
+
+<p><span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt</span> this setting, and you will get the following options:</p>
+
+<p><span class="mag">(X) performance<br />
+( ) userspace<br />
+( ) ondemand<br />
+( ) conservative</span></p>
+
+<p>Since speed is a concern with the kernel seed, this setting defaults to the performance governor. If you wish to modify this setting, you may.</p>
+
+<p>Move to <span class="gry">&lt;</span><span class="red"> E</span><span class="gry">xit &gt</span> to return to the main menu.</p>
+
+<p><span class="mag">-*- 'performance' governor
+< > 'powersave' governor <br /> 
+< > 'userspace' governor for userspace frequency scaling<br />
+< > 'ondemand' cpufreq policy<br />
+< > 'conservative' cpufreq governor</span></p>
+
+<p>This setting shows the selected default governor, and also lists the available governor options. The default for this setting is the <span class="mag">-*- 'performance' governor</span></p>
+
+<p><span class="mag">*** CPUFreq processor drivers ***</span></p>
+
+<p><span class="mag"><*> ACPI Processor P-States driver</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This driver adds a CPUFreq driver which utilizes the ACPI Processor Performance States. This driver also supports Intel Enhanced Speedstep."</p>
+
+<p>This setting defaults to on for consistency. Under it are several choices for CPU's. They are as follows:</p>
+
+<p><span class="yel"><font size="4">x86</font></span>:</p>
+
+<p><span class="mag">< > AMD Mobile K6-2/K6-3 PowerNow!<br /> 
+< > AMD Mobile Athlon/Duron PowerNow!<br />
+< > AMD Opteron/Athlon64 PowerNow!<br />
+< > Cyrix MediaGX/NatSemi Geode Suspend Modulation<br />
+< > Intel Enhanced SpeedStep (deprecated)<br />
+< > Intel Speedstep on ICH-M chipsets (ioport interface)<br />
+< > Intel SpeedStep on 440BX/ZX/MX chipsets (SMI interface)<br />
+< > Intel Pentium 4 clock modulation<br />
+< > nVidia nForce2 FSB changing<br />
+< > Transmeta LongRun<br />
+< > VIA Cyrix III Longhaul<br />
+< > VIA C7 Enhanced PowerSaver (DANGEROUS)<br />  
+*** shared options ***</span></p>
+
+<p><span class="yel"><font size="4">x86_64</font></span>:</p>
+
+<p><span class="mag">< > AMD Opteron/Athlon64 PowerNow!<br />
+< >   Intel Enhanced SpeedStep (deprecated)<br />
+< >   Intel Pentium 4 clock modulation<br />
+*** shared options ***</span></p>
+
+<p>Choose only the options that apply to your system. Selecting options that don't apply to your system can cause all manner of trouble, not the least of which is instability. I have seen this done in many peoples' .configs. There is no default for this group of settings.</p>
+
+ <p>Move to <span class="gry">&lt;</span><span class="red"> E</span><span class="gry">xit &gt</span> to return to the main menu.</p> 
+ 
+<p><span class="mag">-*- CPU idle PM support</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"If you're using an ACPI-enabled platform, you should say Y here." Who can argue with that?</p>
+
+<p><span class="yel">x86_64</span> <span class="mag">Memory power savings ---></span></p>
+
+<p><span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt</span> this setting, and you will get the following options:</p>
+
+<p><span class="mag">< > Intel chipset idle memory power saving driver</span></p>
+
+<p>This setting only applies to certain Intel server chipsets, such as the Intel 7300. Since this is a special case, one shot sort of setting, it defaults to off. Turn it on if you have such a system.</p>
+
+<p>It's now time to move on to page 5.
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-6605932917682734:tvk0q3m8znk" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="text" name="q" size="40" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+
+<p><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</b></a> <span class="grn">Page 4</span> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<p>Cheers,<br />
+Pappy</p>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6605932917682734";
+/* 728x15, created 1/2/10 */
+google_ad_slot = "0330695922";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<div class="footer">
+<p class="home"><a href="index.html">Home</a></p>
+<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> 
+
+<p>Copyright &copy; Bear Upstairs Studio. Original page: 11-21-2009. Page last updated: 10-19-2010. All rights reserved.</p>
+</div>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+</body>
+</html>

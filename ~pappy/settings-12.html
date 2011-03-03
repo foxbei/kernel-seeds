@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Bluefish 2.0.1" >
+<meta name="keywords" content="linux,kernel,.config,config,linux kernel,linux kernel configuration">
+<title>Kernel Seeds Settings Page 12</title>
+<style type="text/css">
+body		{ color: #fff; background-color: #000; }
+h1, h2, h3, h4, h5		{ text-align: center; }
+img			{ margin: 1em; }
+a			{ color: #999; }
+a:link		{ color: #999; } 
+a:visited	{ color: #fff; }
+
+.banner		{ height: 253px; width: 100%; background-image: url(ns-t3b-big.jpg); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer		{ font-size: x-small; text-align: center; font-style: italic; }
+.home		{ font-style: normal; font-size: large; font-weight: bold; }
+.red	{ color: #f00; }
+.grn		{ color: #0f0; }
+.mag		{ color: #f0f; }
+.wht       { color: #fff; }
+.gry       { color: #999; }
+.yel       { color: #ff0; }
+
+</style>
+</head>
+<body>
+
+<div class="banner">
+<h1>Kernel Seed Settings</h1>
+</div>
+
+<p align="center"><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+<h2><span class="grn">Page 12:</span></h2>
+
+<p>This page covers <span class="mag">Cryptographic API</span>.</p>
+
+<p align="center"><img src="page_12.png" alt="Cryptographic API from main page" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up the following sub page:</p>
+
+<p align="center"><img src="page_12a.png" alt="Cryptographic API menu" /></p>
+
+<p>Some may wonder why I would turn off all the security settings, yet I turn on all of the cryptographic options. While I consider security to be yours to set according to your personal comfort level, cryptographic services are important, very common, and needed for certain basic things, such as wireless networking encryption (WEP, WPA, etc.). Without the cryptographic settings turned on, some services will simply fail.</p>
+
+<p>Why turn them all on? Simple. A long time ago, when I was but a n00b, I read in a forum that it was a good idea to turn on all the cryptographic options to insure full compatibility with wireless networking. I later learned this wasn't an absolute necessity. As a matter of fact, my ongoing research tells me that I might want to consider dumping some of the deprecated stuff, which actually does exist. That is for another phase of settings. I have to leave myself something new and exciting for the update of these pages.</p>
+
+<p>There are numerous devices and networking setups that use encryption regularly, such as ssh, ssl, and IPsec. To my mind, being able to decode anything that comes down the line is a really good thing. Further, since I have no way of knowing all that the potential user of a kernel seed will face or has set up, I figured I'd rather have all those settings on than have to try to troubleshoot any of the myriad problems that could arise if they were turned off.</p>
+
+<p>As for why I compile them all in: extra files hanging out. While it is clear from the research I've done on these pages that a balance of modular and in-kernel drivers is the best way to go, my opinion is that the number of modules should be kept to a minimum. Less module files means less files to get corrupted should something awful happen.</p> 
+
+<p>Fewer modules means fewer avenues of exploitation when someone makes it their business to bring your system crashing down. Since these things are going to basically sit in the kernel unused until absolutely needed, they stay out of the way of fiddling fingers. Since they are compiled into the kernel, they aren't as easy to break via arbitrary code introduced through a modified module.</p>
+
+<p>While compiling all that stuff in grows the kernel image larger, considering that the average kernel image is in the 3 Megabyte range, what's a few hundred K more or less? They sit there in the kernel doing nothing until they are needed, operating seamlessly and invisibly. Seamless operation always makes Pappy happy.</p>
+
+<p><span class="mag">--- Cryptographic API<br>
+*** Crypto core or helper ***</span></p>
+<p><span class="mag">--- FIPS 200 compliance</span></p>
+
+<p>FIPS or Federal Information Processing Standards is a set of standards for computer systems used by the US Federal government. This option turns on the FIPS boot option, which is required if you're using your system in conjunction with the US government. While it's probably not needed for most users, the option is hardwired to "on" by selecting other options.</p>
+
+<p><span class="mag">--- Cryptographic algorithm manager</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"Create default cryptographic template instantiations such as cbc(aes)"</p>
+
+<p>This option is turned on by turning on most of the other options below, or can be manually selected if you decide to turn some off. It stands to reason if one is going to use more than one of the encryption settings below, which is pretty much a necessity, you're going to want a manager to keep track of things.</p>
+
+<p><span class="mag">--- GF(2^128) multiplication functions (EXPERIMENTAL)</span></p>
+
+<p>This is needed by some cypher modes. This option will be selected automatically if you select such a cipher mode. Since I select every cipher, it follows that this option is hardwired to on.</p>
+
+<p><span class="mag">< > Null algorithms</span></p>
+
+<p>These null algorithms are used by IPsec, and do nothing. For that reason, this is the only setting that defaults to off in this group.</p>
+
+
+<p><span class="mag">&lt;*&gt; Software async crypto daemon</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This is a generic software asynchronous crypto daemon that converts an arbitrary synchronous software crypto algorithm into an asynchronous algorithm that executes in a kernel thread." This is used for WEP, and is therfore necessary if you use WEP encryption with your wireless network.</p>
+
+
+<p><span class="mag">&lt;*&gt; Authenc support</span></p>
+
+<p>This combined mode IPsec wrapper is a requirement if you are going to use the IPsec system.</p>
+
+<p><span class="mag">&lt; &gt; Testing module</span></p>
+
+<p>This module is a down and dirty module used for testing purposes. If you know what you're doing, go ahead and mess with this setting. Since I didn't at the time, and have yet to research this particular topic to any degree, this setting is defaulted to off.</p>
+
+<p><span class="mag">*** Authenticated Encryption with Associated Data ***<br />
+&lt;*&gt; CCM support</span></p>
+
+<p>Counter with CBC-MAC (CCM) is a generic authenticated encryption block cipher mode. CCM is only defined for use with 128-bit block ciphers, such as AES [AES]. This setting is also an IPsec requirement.</p>
+
+<p><span class="mag">&lt;*&gt; GCM/GMAC support</span></p>
+
+<p>This setting turns on support for Galois/Counter Mode (GCM) and Galois Message Authentication Code (GMAC). GCM and GMAC provide stronger authentication assurance than a (non-cryptographic) checksum or error detecting code. In particular, they can detect both a) accidental modifications of the data, and b) intentional, unauthorized modifications. This is yet another requirement for IPsec.</p>
+
+
+<p><span class="mag">--- Sequence Number IV Generator</span></p>
+
+<p>This IV generator generates an IV based on a sequence number by XORing it with a salt.  This algorithm is mainly useful for AES CTR mode.</p>
+
+<p><span class="mag">*** Block modes ***<br />
+--- CBC support</span></p>
+
+<p>In the cipher-block chaining (CBC) mode, each block of plaintext is XORed with the previous ciphertext block before being encrypted. This is yet another requirement for IPsec.</p>
+
+<p><span class="mag">--- CTR support</span></p>
+
+<p>CTR mode is a little different than the other CipherModes because in fact the plainText is not directly encrypted to obtain the cipherText. Instead, a counter is encrypted, and the result of that is XORed with the plainText to get the cipherText. This is yet another requirement for IPsec.</p>
+
+<p><span class="mag">&lt;*&gt; CTS support</span></p>
+
+<p>Ciphertext stealing (CTS) provides support for sectors with size not divisible by block size, for example, 520-byte sectors and 16-byte blocks. This mode is required for Kerberos gss mechanism support for AES encryption.</p>
+
+<p><span class="mag">--- ECB support</span></p>
+
+<p>ECB (Electronic CodeBook) is the simplest operation mode compared to other operation modes. It simply encrypts the input block by block. </p>
+
+<p><span class="mag">&lt;*&gt; LRW support (EXPERIMENTAL)</span></p>
+
+<p>Liskov Rivest Wagner, (LRW) is a tweakable, non malleable, non movable narrow block cipher mode for dm-crypt.</p>
+
+<p><span class="mag">&lt;*&gt; PCBC support</span></p>
+
+<p>The Propagating Cipher-Block Chaining (PCBC) mode was designed to cause small changes in the ciphertext to propagate indefinitely when decrypting, as well as when encrypting.</p>
+
+<p><span class="mag">&lt;*&gt; XTS support (EXPERIMENTAL)</span></p>
+
+<p>XTS (XEX-based Tweaked CodeBook mode (TCB) with CipherText Stealing (CTS)) is an algorithm used by dm-crypt. It is used for disk encryption.</p>
+
+<p><span class="mag">*** Hash modes *** <br />
+--- HMAC support</span></p>
+
+<p>HMAC is a MAC (message authentication code), i.e. a keyed hash function used for message authentication, which is based on a hash function. A hash function H is a transformation that takes an input m and returns a fixed-size string, which is called the hash value h (that is, h = H(m)). This is yet another requirement for IPsec.</p>
+
+<p><span class="mag">&lt;*&gt; XCBC support</span></p>
+
+<p>The AES-XCBC-MAC-96 algorithm is a variant of the basic CBC-MAC with obligatory 10* padding; however, AES-XCBC-MAC-96 is secure for messages of arbitrary length. </p>
+
+<p><span class="mag">*** Digest ***<br />
+--- CRC32c CRC algorithm</span></p>
+
+<p>This setting adds CRC32C checksumming capabilities to the crypto routines.</p>
+
+<p><span class="mag">&lt;*&gt; CRC32c INTEL hardware acceleration</span></p>
+
+<p>In Intel processors with SSE4.2 supported, the processor will support CRC32C implementation using hardware accelerated CRC32 instruction. This option will enable any routine to use the CRC32 instruction to gain performance compared with software implementation.</p>
+
+<p><span class="mag"><p>&lt;*&gt; MD4 digest algorithm</span></p>
+
+<p>The MD4 algorithm is intended for digital signature applications, where a large file must be "compressed" in a secure manner before being encrypted with a private (secret) key under a public-key cryptosystem such as RSA ((Rivest, Shamir and Adleman who first publicly described it); an algorithm for public-key cryptography).</p>
+
+<p><span class="mag">--- MD5 digest algorithm</span></p>
+
+<p>MD5 was a way to verify data integrity, and is much more reliable than checksum and many other commonly used methods.</p>
+
+<p><span class="mag">--- Michael MIC keyed digest algorithm</span></p>
+
+<p>Michael MIC is used for message integrity protection in TKIP (IEEE 802.11i). This is primarily for wireless networking.</p>
+
+<p><span class="mag">&lt;*&gt; RIPEMD-128 digest algorithm<br />
+&lt;*&gt; RIPEMD-160 digest algorithm<br />
+&lt;*&gt; RIPEMD-256 digest algorithm<br />
+&lt;*&gt; RIPEMD-320 digest algorithm</span></p>
+
+<p>RIPEMD-160 (RACE Integrity Primitives Evaluation Message Digest) is a 160-bit message digest algorithm (cryptographic hash function). It exists in the bit versions listed above.</p>
+
+<p><span class="mag">--- SHA1 digest algorithm<br />
+&lt;*&gt; SHA224 and SHA256 digest algorithm<br />
+&lt;*&gt; SHA384 and SHA512 digest algorithms</span></p>
+
+<p>The SHA hash functions are five cryptographic hash functions designed by the National Security Agency (NSA) and published by the NIST as a U.S. Federal Information Processing Standard. SHA stands for Secure Hash Algorithm. Hash algorithms compute a fixed-length digital representation (known as a message digest) of an input data sequence (the message) of any length.</p>
+
+
+<p><span class="mag">&lt;*&gt; Tiger digest algorithms</span></p>
+
+<p>Tiger is a fast new hash function, designed to be very fast on modern computers, and in particular on the state-of-the-art 64-bit computers (like DEC-Alpha), while it is still not slower than other suggested hash functions on 32-bit machines.</p>
+
+<p><span class="mag">&lt;*&gt; Whirlpool digest algorithms</span></p>
+
+<p>Whirlpool is a one-way collision-resistant hash function designed by Vincent Rijmen and Paulo S. L. M. Barreto. It operates on messages less than 2256 bits in length, and produces a message digest of 512 bits.</p>
+
+<p><span class="mag">*** Ciphers ***<br />
+--- AES cipher algorithms</p>
+
+<p>The Advanced Encryption Standard (AES) specifies a FIPS-approved cryptographic algorithm that can be used to protect electronic data. The AES algorithm is a symmetric block cipher that can encrypt (encipher) and decrypt (decipher) information.</p>
+
+<p><span class="yel">x86</span> <span class="mag">&lt;*&gt; AES cipher algorithms (i586)</span><br />
+<span class="yel">x86_64</span> <span class="mag">--- AES cipher algorithms (x86_64)</span><br />
+<span class="yel">x86_64</span> <span class="mag">&lt;*&gt; AES cipher algorithms (AES-NI)</span></p>
+
+<p>These are the three available flavors of AES. The first two should be fairly self evident. AES-NI is specifically for I7, I5, and I3 Intel processors (Westmere and later). Technically speaking, AES-NI is not needed unless you have one of the above listed processors. It is turned on for the sake of completeness.</p>
+
+<p><span class="mag">&lt;*&gt; Anubis cipher algorithm</span></p>
+
+<p>ANUBIS is a block cipher that operates on data blocks of length 128 bits, and uses keys of length 128 to 320 bits in steps of 32 bits. It has been submitted as a candidate algorithm for the NESSIE cryptographic primitive evaluation effort.</p>
+
+<p><span class="mag">--- ARC4 cipher algorithm</span></p>
+
+<p>RC4 is a stream cipher designed in RSA laboratories by Ron Rivest in 1987. This cipher is widely used in commercial applications including Oracle SQL, Microsoft Windows and SSL. It is also a part of WEP, and the primary WPA cipher algorithm.</p>
+
+<p><span class="mag">&lt;*&gt; Blowfish cipher algorithm</span></p>
+
+<p>Blowfish is a symmetric block cipher that can be used as a drop-in replacement for DES or IDEA. It takes a variable-length key, from 32 bits to 448 bits.</p>
+
+<p><span class="mag">&lt;*&gt; Camellia cipher algorithms</span></p>
+
+<p>Camellia is a symmetric key block cipher developed jointly in 2000 by world top class encryption researchers at NTT and Mitsubishi Electric Corporation.</p>
+
+<p><span class="mag">&lt;*&gt; CAST5 (CAST-128) cipher algorithm</span></p>
+
+<p>The CAST-128 encryption algorithm is a DES-like Substitution-Permutation Network (SPN) cryptosystem which appears to have good resistance to differential cryptanalysis, linear cryptanalysis, and related-key cryptanalysis.</p>
+
+
+<p><span class="mag">&lt;*&gt; CAST6 (CAST-256) cipher algorithm</span></p>
+
+<p>CAST-256 is the Canadian entry in the competition for the new Advanced Encryption Standard. It takes its name from the original CAST cipher, designed by Carlisle Adams and Stafford Tavares; they and others worked on the design of CAST-256.</p>
+
+<p><span class="mag">&lt;*&gt; DES and Triple DES EDE cipher algorithms</span></p>
+
+<p>The Data Encryption Standard [DES] is the first encryption algorithm approved by the U.S. government for public disclosure. Triple DES (3DES) or the Triple Data Encryption Algorithm (TDEA) is a refinement of DES recognised as a FIPS-approved algorithm. Single DES is now recommended for legacy systems only.</p>
+
+<p><span class="mag">&lt;*&gt; FCrypt cipher algorithm</span></p>
+
+<p>The FCrypt algorithm is a secret key block cipher with a 64-bit key size and a 64-bit block size.  The cipher has the same 16 round Feistel structure as DES.</p>
+
+<p><span class="mag">&lt;*&gt; Khazad cipher algorithm</span></p>
+
+<p>KHAZAD is an iterated 64-bit block cipher with 128-bit keys. It comprises 8 rounds; each round consists of eight 8-bit to 8-bit S-box parallel lookups, a linear transformation (multiplication by a constant MDS diffusion matrix) and round key addition.</p>
+
+<p><span class="mag">&lt;*&gt; Salsa20 stream cipher algorithm (EXPERIMENTAL) <br />
+<span class="yel">x86</span> &lt;*&gt; Salsa20 stream cipher algorithm (i586) (EXPERIMENTAL)<br />
+<span class="yel">x86_64</span> &lt;*&gt; Salsa20 stream cipher algorithm (x86_64) (EXPERIMENTAL)</span></p>
+
+<p>Salsa20 is a family of 256 bit stream ciphers designed in 2005 and submitted to eSTREAM, the ENCRYPT Stream Cipher Project. Their flavors are listed above.</p>
+
+<p><span class="mag">&lt;*&gt; SEED cipher algorithm</span></p>
+
+<p>SEED is a block cipher developed by the Korean Information Security Agency. It is used broadly throughout South Korean industry, but seldom found elsewhere.</p>
+
+<p><span class="mag">&lt;*&gt; Serpent cipher algorithm</span></p>
+
+<p>Serpent is a 128-bit block cipher designed by Ross Anderson, Eli Biham and Lars Knudsen as a candidate for the Advanced Encryption Standard.</p>
+
+<p><span class="mag">&lt;*&gt; TEA, XTEA and XETA cipher algorithms</span></p> 
+
+<p>Tiny Encryption Algorithm is a simple cipher that uses many rounds for security. It is very fast and uses little memory. Xtendend Tiny Encryption Algorithm is a modification to the TEA algorithm to address a potential key weakness in the TEA algorithm. Xtendend Encryption Tiny Algorithm is a mis-implementation of the XTEA algorithm for compatibility purposes. </p>
+
+<p><span class="mag">&lt;*&gt; Twofish cipher algorithm<br />
+<span class="yel">x86</span> &lt;*&gt; Twofish cipher algorithms (i586)<br />
+<span class="yel">x86_64</span> &lt;*&gt; Twofish cipher algorithm (x86_64)</p> 
+
+<p>Twofish is a block cipher by Counterpane Labs, published in 1998. It was one of the five Advanced Encryption Standard (AES) finalists, and was not selected as AES. </p>
+
+<p><span class="mag">*** Compression ***<br />
+&lt;*&gt; Deflate compression algorithm</span></p>
+
+<p>Deflate is a lossless data compression algorithm that uses a combination of the LZ77 algorithm and Huffman coding. It was first used in PKZIP.</p>
+
+<p><span class="mag">&lt;*&gt; Zlib compression algorithm</span></p>
+
+<p>Zlib is designed to be a free, general-purpose, legally unencumbered -- that is, not covered by any patents -- lossless data-compression library for use on virtually any computer hardware and operating system.</p>
+
+<p><span class="mag">&lt;*&gt; LZO compression algorithm</span></p>
+
+<p>LZO is a portable lossless data compression library written in ANSI C. It offers pretty fast compression and very fast decompression. Decompression requires no memory.</p>
+
+<p><span class="mag">*** Random Number Generation ***<br />
+<p>&lt;*&gt; Pseudo Random Number Generation for Cryptographic modules</span></p>
+
+<p>Random numbers are needed for certain cryptographic options to work properly. This makes sure that happens.</p>
+
+<p><span class="mag">[ ] Hardware crypto devices---></span></p>
+
+<p>This main setting allows you to select the options below. Turn this on if and only if you have one of the below-listed devices.</p>
+
+<p><span class="mag">--- Hardware crypto devices<br />
+&lt; &gt; Support for VIA PadLock ACE<br />
+&lt; &gt; PadLock driver for AES algorithm<br />
+&lt; &gt; PadLock driver for SHA1 and SHA256 algorithms</span></p>
+
+<p>The C3 and Eden processor series from VIA include hardware acceleration for AES. The C7 series includes hardware acceleration for AES, SHA1, SHA256 and RSA.  All of the above processor series include a hardware random number generator. If you have one of the listed processors, turn on this support.</p>
+
+<p><span class="yel">x86</span> <span class="mag">&lt; &gt; Support for the Geode LX AES engine</span></p>
+
+<p>The AMD Geode LX800  CPU has an on-chip AES 128-bit crypto accelerations block and a true random number generator. Using this block for encryption and decryption is a lot faster than software implemented algorithms and it unloads the CPU. Turn this setting on if you have one of these processors.</p>
+
+<p><span class="mag">&lt; &gt; Driver HIFN 795x crypto accelerator chips.<br />
+[ ] HIFN 795x random number generator</span></p>
+
+<p>This setting allows you to have support for HIFN 795x crypto adapters, as well as the on-chip random number generator.</p>
+
+<p>You have reached the end of page twelve.</p>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-6605932917682734:tvk0q3m8znk" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="text" name="q" size="40" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+<p align="center"><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <span class="grn">Page 12</span> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<p>Cheers,<br />
+Pappy</p>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6605932917682734";
+/* 728x15, created 1/2/10 */
+google_ad_slot = "0330695922";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<div class="footer">
+<p class="home"><a href="index.html">Home</a></p>
+<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> 
+
+<p>Copyright &copy; Bear Upstairs Studio. Original page: 10-19-2010. Page last updated: 11-29-2010. All rights reserved.</p>
+</div>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+</body>
+</html>

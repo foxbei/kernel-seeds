@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Bluefish 1.3.8" >
+<title>Working with Pappy's Kernel Seeds</title>
+<style type="text/css">
+body		{ color: #fff; background-color: #000; }
+h1, h2		{ text-align: center; }
+img			{ margin: 1em; }
+a			{ color: #0f0; }
+/* a:link		{ color: #f0f; } */
+a:visited	{ color: #fff; }
+
+.banner		{ height: 253px; width: 100%; background-image: url(ns-t3b-big.png); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer		{ font-size: x-small; text-align: center; font-style: italic; }
+.home		{ font-style: normal; font-size: large; font-weight: bold; }
+.command	{ color: #0f0; }
+.kconf		{ color: #f0f; }
+.red        { color: #f00; }
+
+pre			{ color: #fff500; background: #000; border: 2px dotted #ccc; width: 45em; padding: 0.5em; text-align: left; }
+.ps1		{ color: #f55; font-weight: bold; }
+.ps2		{ color: #55f; font-weight: bold; }
+
+iframe		{ border: medium none; width: 60em; height: 37em; }
+</style>
+</head>
+<body>
+<div class="banner">
+<h1>Working with Kernel Seeds</h1>
+</div>
+
+<h2>Getting started:</h2>
+
+<p><span class="red"><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="50"  />Seeds are not bootable out of the box.</span> Let me say that again, a Kernel Seed, fresh from the site, <u>will not boot</u>. They have to be configured by yourself in order to do anything. You have to add
+your list of hardware devices to the Seed and compile it. To get the
+information, execute the following commands: <span class="command">lspci -n</span>, and <span class="command">cat /proc/cpuinfo</span>. Keep that information handy. You'll be using it soon.</p>
+
+<p>Working with Kernel Seeds, hereafter
+known as Seeds, is like working with any other kernel with one
+exception: with Kernel Seeds, you are provided a stable base upon which you build
+a functional computer. Effectively, they are my sane <span class="command">make defconfig</span> for the real world.</p>
+
+<p>In order to use the Seeds, the first step is to install
+the kernel source you desire. For the Gentoo Linux user, you have
+numerous choices. You can install many different kernels
+versions directly from portage. You can get source directly from <a href="http://kernel.org">kernel.org.</a> You can make up custom source with patches.</p>
+
+<h2>Learning by example:</h2>
+
+<p>Since the best way to learn is by example, let's take a
+look at one. This information is from my system, Core-too; an amd64
+system running on a Core2 Duo 2.33GHz chip. I will be configuring a
+2.6.27-gentoo-r8 kernel.</p>
+
+<center><pre><span class="ps1">core-too</span><span class="ps2"> ~ # </span>lspci -n
+00:00.0 0600: 8086:2770 (rev 02)
+00:01.0 0604: 8086:2771 (rev 02)
+00:1c.0 0604: 8086:27d0 (rev 01)
+00:1d.0 0c03: 8086:27c8 (rev 01)
+00:1d.1 0c03: 8086:27c9 (rev 01)
+00:1d.2 0c03: 8086:27ca (rev 01)
+00:1d.3 0c03: 8086:27cb (rev 01)
+00:1d.7 0c03: 8086:27cc (rev 01)
+00:1e.0 0604: 8086:244e (rev e1)
+00:1f.0 0601: 8086:27b8 (rev 01)
+00:1f.1 0101: 8086:27df (rev 01)
+00:1f.2 0101: 8086:27c0 (rev 01)
+00:1f.3 0c05: 8086:27da (rev 01)
+01:00.0 0200: 1106:3043 (rev 06)
+01:01.0 0401: 1412:1712 (rev 02)
+03:00.0 0300: 10de:01d3 (rev a1)
+<span class="ps1">core-too</span><span class="ps2"> ~ # </span>
+</pre></center>
+
+<center><pre><span class="ps1">core-too</span><span class="ps2"> ~ # </span>cat /proc/cpuinfo
+processor	 : 0
+vendor_id	 : GenuineIntel
+cpu family	 : 6
+model		 : 15
+model name	 : Intel(R) Core(TM)2 Duo CPU     E6550  @ 2.33GHz
+stepping	 : 10
+cpu MHz	 : 2331.000
+cache size	 : 4096 KB
+physical id	 : 0
+siblings	 : 2
+core id	 : 0
+cpu cores	 : 2
+apicid		 : 0
+initial apicid	 : 0
+fpu		 : yes
+fpu_exception	 : yes
+cpuid level	 : 10
+wp		 : yes
+flags		 : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge
+mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe
+syscall nx lm constant_tsc arch_perfmon pebs bts rep_good pni dtes64
+monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm lahf_lm tpr_shadow
+vnmi flexpriority
+bogomips	 : 5053.84
+clflush size	 : 64
+cache_alignment : 64
+address sizes	 : 36 bits physical, 48 bits virtual
+power management:
+
+processor	 : 1
+vendor_id	 : GenuineIntel
+cpu family	 : 6
+model		 : 15
+model name	 : Intel(R) Core(TM)2 Duo CPU     E6550  @ 2.33GHz
+stepping	 : 10
+cpu MHz	 : 2331.000
+cache size	 : 4096 KB
+physical id	 : 0
+siblings	 : 2
+core id	 : 1
+cpu cores	 : 2
+apicid		 : 1
+initial apicid	 : 1
+fpu		 : yes
+fpu_exception	 : yes
+cpuid level	 : 10
+wp		 : yes
+flags		 : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge
+mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe
+syscall nx lm constant_tsc arch_perfmon pebs bts rep_good pni dtes64
+monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm lahf_lm tpr_shadow
+vnmi flexpriority
+bogomips	 : 5053.97
+clflush size	 : 64
+cache_alignment : 64
+address sizes	 : 36 bits physical, 48 bits virtual
+power management:
+<span class="ps1">core-too</span><span class="ps2"> ~ # </span>
+</pre></center>
+
+<center><pre><span class="ps1">core-too</span><span class="ps2"> ~ # </span>cat /etc/fstab
+none		/proc		proc		defaults	0 0
+none		/dev/shm	tmpfs		defaults	0 0
+/dev/sdb1	/		reiserfs	defaults	1 1
+/dev/sdb2	none		swap		swap		0 0
+/dev/sda1	/mnt/WinXP	ntfs-3g		defaults	1 0
+<span class="ps1">core-too</span><span class="ps2"> ~ # </span>
+</pre></center>
+
+<h2>Configuring the kernel:</h2>
+
+<p>1) Take the results of <span class="command">lspci -n</span> and paste them at the
+following site: <a href="http://kmuto.jp/debian/hcl/">http://kmuto.jp/debian/hcl/</a>.
+With my example, the page would look like this:</p>
+
+<center><iframe src="deb-pg_1.html"></iframe></center>
+
+<p>Pressing the "Check" button produces this result:</p>
+
+<center><iframe name="deb-pg" src="deb-pg_2.html"></iframe></center>
+
+<p>Now you have all the needed information to configure your kernel. I personally use <span class="command">make xconfig</span>, so all the examples will be <span class="command">make xconfig</span> screenshots. </p>
+
+<p>2) <span class="command">cd /usr/src/linux-2.6.27-gentoo-r8</span></p>
+
+<p>3) <span class="command">make xconfig</span>. You will be greeted by the
+following screen:</p>
+
+<p align="center"><img alt="make xconfig" src="xconfig_01.jpg"></p>
+
+<p>This page is preset as a part of my Seeds. As a matter of course, I ask you not to change settings on this page unless you
+know what you're doing. Even then, if you must go there, don't turn on anything with the word "group" and the initials CPU!</p>
+
+<p>Note: With <span class="command">make xconfig</span>, the check mark means "yes", and the bullet dot means "module" as
+you will see presently. For size considerations, I'll only show partial xconfig panels from this point.
+
+</p><p>The first stop is <span class="kconf">Processor type and features</span>. Since <span class="command">cat /proc/cpuinfo</span> told me I have an Intel Core2 Duo processor, I need to make sure the kernel is informed.</p>
+
+<p align="center"><img alt="Menuconfig: Processor type and features" src="xconfig_02.jpg"></p>
+
+<p>Next, move down the left side of the <span class="command">make xconfig</span> screen to the first actual device to install: the hard drive controller. I use the <span class="kconf">Serial ATA (prod) and Parallel ATA (experimental) drivers (ATA)</span>
+drivers, hereafter called libata drivers since I have an Intel SATA
+interface. The libata drivers can be used just as well on machines
+without any SATA devices. I personally recommend making the switch.</p>
+
+<p align="center"><img alt="Menuconfig: Using SATA with IDE drives" src="xconfig_03.jpg"></p>
+
+<p>Note: For this, as with all drivers, it's best to pick <u>only</u> the driver you need. </p>
+
+<p>The next device to install is the net card. Since I'm using a Via Rhine 10/100 knock-off,
+I'd want to go to the <span class="kconf">Ethernet (10 or 100Mbit) (NET_ETHERNET)</span> section,
+and select <span class="kconf">VIA Rhine support (VIA_RHINE)</span>, as in the example below.</p>
+
+<p align="center"><img alt="Menuconfig: VIA Rhine support" src="xconfig_04.jpg"></p>
+
+<p>Note: in general, it is desireable to set up your
+network devices as modules, as in the example above. This is especially
+true for wireless. Most wireless drivers simply will not function when
+compiled into the kernel. They <u>must</u> be modules.</p>
+
+<p>The next thing that needs to be set is the random number generator. That shows up under
+<span class="kconf">Character devices</span>.</p>
+
+<p align="center"><img alt="Menuconfig: Random number generator" src="xconfig_05.jpg"></p>
+
+<p>Next, move down to <span class="kconf">I2C Hardware Bus support</span> under <span class="kconf">I2C support (I2C)</span>.</p> 
+
+<p align="center"><img alt="Menuconfig: Chipset I2C support (I2C)" src="xconfig_06.jpg"></p>
+
+<p>Next, move down to <span class="kconf">Hardware Monitoring support</span> and turn on the <span class="kconf">Intel Core (2) Duo/Solo temperature sensor (SENSORS_CORETEMP)</span> module, since the machine has a core2 chip.</p>
+
+<p>Next, move down to <span class="kconf">Graphics support</span>.
+If you are running an nVidia card, you don't need to do anything here.
+I believe
+you can also ignore this section if you're using ATI drivers. </p>
+
+<p>If you are running an Intel video card, you would want to make the following changes:<br>Under <span class="kconf">/dev/agpart (AGP Support)</span>, turn on <span class="kconf">Intel 440LX/BX/GX, I8xx and E7x05 chipset support (AGP_INTEL)</span>. <u>Don't</u> set as module.<br>
+Under <span class="kconf">Direct Rendering Manager (XFree86 4.1.0 and higher DRI support) (DRM)</span>, check the following:</p>
+
+<p align="center"><img alt="Menuconfig: Chipset-specific Direct Rendering Manager" src="xconfig_07.jpg"></p>
+
+<p>For stability's sake, it's best to compile this in, and compile it as i915, even with an i830 video chip. Libdrm and xf86-video-intel will sort it out, and set the video properly.</p>
+
+<p><span class="red"><img src= "exc-seed-small.png" alt= "Important!" align ="left" width="30" height="50"  />IMPORTANT INFORMATION CHANGE: </span></p>
+
+<p>Note that Intel GPU users should use the VESA VGA frame buffer. The intelfb driver has become quite unstable since the time of the original writing of this document. KMS <span class="kconf">(Enable modesetting on intel by default)</span> is NOT recommended.</span></p>
+
+<p>The last major device on the list would be the soundcard. I use a very simple setup with my sound card as it doesn't support MIDI. Therefore, I don't need to set it up to use a synth of any kind. Generally speaking though, the first three settings under
+<span class="kconf">Advanced Linux Sound Architecture (SND)</span>
+are set as modules, and the fourth option, <span class="kconf">Dynamic device minor numbers</span> is set as yes. See below.</p>
+
+<p align="center"><img alt="Menuconfig: Alsa configuration" src="xconfig_09.jpg"></p>
+
+<p>When setting up the actual sound card driver under <span class="kconf">PCI
+sound devices (SND_PCI)</span>, configure it as a module, like the example below. This is how Gentoo does it.
+
+</p><p align="center"><img alt="Menuconfig: PCI sound device driver configured as a module" src="xconfig_10.jpg"></p>
+
+<p>The final setting is the <span class="kconf">File sytstems settings</span>. If you're using ext2, ext3, or reiserfs, you don't have to set up the file systems in a Seed. All three file systems have been selected by default. If you wish to use any other file system, you have to change that in this portion of the kernel. Also, I recommend turning off unused file system support. Following those rules of thumb, this page will wind up looking like this:</p>
+
+<p align="center"><img alt="Menuconfig: Filesystem selection" src="xconfig_11.jpg"></p>
+
+<p>Note: <span class="kconf">Filesystem in Userspace support (FUSE_FS)</span>, if desired, should always be set as module.</p>
+
+<p>4) Take a second look through the <span class="command">make xconfig</span> screens to make sure there are no mistakes. When satisfied, exit <span class="command">make xconfig</span> and compile the kernel.</p>
+
+<h2>Compiling the kernel:</h2>
+
+<p>1) <span class="command">make &amp;&amp; make modules_install</span>.</p>
+
+<p>2) <span class="command">cp /usr/src/linux-2.6.27-gentoo-r8/arch/x86/boot/bzImage /boot/vmlinuz-2.6.27-gentoo-r8</span>.</p>
+
+<p>3) Set up /etc/lilo.conf or /boot/grub.conf to boot the new kernel.</p>
+
+<p>4) If you are using lilo, don't forget to invoke <span class="command">lilo</span> once you have things set up right.</p>
+
+<p>5) Reboot.</p>
+
+<p>6) Check out /var/log/dmesg to make sure your drivers
+loaded without errors.</p>
+
+<p>For reference, here is the <a href=".config">finished kernel .config</a>, sans the Intel video settings.</p>
+
+<p>Blessed be!<br>
+Pappy</p>
+
+<div class="footer">
+	<p class="home"><a href="index.html">Home</a></p>
+	<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> Page recoded by VincZ, with my thanks.
+	<p>Copyright &copy;Bear Upstairs Studio. Original page: 01/28/2009. Revised: 11/18/2009. All rights reserved</p>
+</div>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+</body>
+</html>

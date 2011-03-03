@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Keywords" content="Hardware Compatibility List, Debian, Linux, device driver">
+  <title>Debian HCL; Debian GNU/Linux device driver check &amp; report</title>
+  <style type="text/css" media="all">
+	body		{ background: #fff; color: #000; font-size: 90%; }
+	div.form	{ text-align: center; }
+  </style>
+</head>
+<body>
+<h2>Debian GNU/Linux device driver check page</h2>
+<p>Boot your machine with a GNU/Linux OS (such as Debian, Knoppix, Redhat, and so on), run 'lspci -n'
+and paste the output into the box below, then press 'Check' button.</p>
+<div class="form">
+  <form action="http://kmuto.jp/debian/hcl/index.rhtmlx" method="post" target="deb-pg">
+    <textarea name="lspci" rows="15" cols="60">
+00:00.0 0600: 8086:2770 (rev 02)
+00:01.0 0604: 8086:2771 (rev 02)
+00:1c.0 0604: 8086:27d0 (rev 01)
+00:1d.0 0c03: 8086:27c8 (rev 01)
+00:1d.1 0c03: 8086:27c9 (rev 01)
+00:1d.2 0c03: 8086:27ca (rev 01)
+00:1d.3 0c03: 8086:27cb (rev 01)
+00:1d.7 0c03: 8086:27cc (rev 01)
+00:1e.0 0604: 8086:244e (rev e1)
+00:1f.0 0601: 8086:27b8 (rev 01)
+00:1f.1 0101: 8086:27df (rev 01)
+00:1f.2 0101: 8086:27c0 (rev 01)
+00:1f.3 0c05: 8086:27da (rev 01)
+01:00.0 0200: 1106:3043 (rev 06)
+01:01.0 0401: 1412:1712 (rev 02)
+03:00.0 0300: 10de:01d3 (rev a1)
+</textarea><br>
+    <input type="submit" name="check" value="Check">
+    <input type="reset" name="reset" value="Clear">
+</form>
+</div>
+<div class="hclnotice">
+  <p class="hclnotice">Notice:</p>
+  <ul>
+    <li>This database uses the PCI map of Debian kernel 2.6.30-1-686.</li>
+    <li>The result does NOT guarantee your hardware works perfectly.</li>
+    <li>This database only verifies the PCI devices at this time. X drivers, ISA, USB, IEEE1394 or any
+    other devices are out of the focus.</li>
+  </ul>
+</div>
+</body>
+</html>

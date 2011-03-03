@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Bluefish 2.0.1" >
+<meta name="keywords" content="linux,kernel,.config,config,linux kernel,linux kernel configuration">
+<title>Kernel Seeds Settings Page 11</title>
+<style type="text/css">
+body		{ color: #fff; background-color: #000; }
+h1, h2, h3, h4, h5		{ text-align: center; }
+img			{ margin: 1em; }
+a			{ color: #999; }
+a:link		{ color: #999; } 
+a:visited	{ color: #fff; }
+
+.banner		{ height: 253px; width: 100%; background-image: url(ns-t3b-big.jpg); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer		{ font-size: x-small; text-align: center; font-style: italic; }
+.home		{ font-style: normal; font-size: large; font-weight: bold; }
+.red	{ color: #f00; }
+.grn		{ color: #0f0; }
+.mag		{ color: #f0f; }
+.wht       { color: #fff; }
+.gry       { color: #999; }
+.yel       { color: #ff0; }
+
+</style>
+</head>
+<body>
+<div class="banner">
+<h1>Kernel Seed Settings</h1>
+</div>
+
+<p align="center"><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<h2><span class="grn">Page 11:</span></h2>
+
+<p>This page covers <span class="mag">Security options</span>.</p>
+
+<p align="center"><img src="page_11.png" alt="Security options from main page" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up the following sub page:</p>
+
+<p align="center"><img src="page_11a.png" alt="Security options menu" /></p>
+
+<p>As a general rule, even a woefully under-protected Linux install beats a fully patched Windows install (plus anti-virus programs) when it comes to security. While there are kernel settings that could render a system dead in the water via remote attack, for the most part, the design of the Linux operating system doesn't allow that to happen unless you allow someone to have your root password. Even then, the damage inflictable remotely is generally not as complete as the damage you can cause to a Windows install via remote attack.</p>
+
+<p>There are numerous reasons for this. Suffice it to say that a well maintained Linux install is sure to be more secure and less prone to completely devastating attacks than Windows. To find out the basic differences, <a href="http://www.theregister.co.uk/2004/10/22/security_report_windows_vs_linux/">check this URL</a> for an old but still fairly accurate article comparing the two.</p>
+
+<p>The intent of a seed is getting your computer running Linux in a stable fashion. For that reason, all kernel-based security options are turned off. In my opinion, getting things running properly should always be the most important detail when it comes to setting up a Linux kernel. If you have security concerns, then you can play with security settings knowing you have a functional base to which you can return via the kernel seed.</p>
+
+<p>Finally, everyone has a different definition of, "secure". A home user is going to have different needs than an Internet server admin. The last two things I want to do are to be liable for setting security settings that go "bump" in the night, or to support kernel-based security at all. The topic is huge, and far beyond the scope of anything I want to tackle with the kernel seed. Your security comfort level should be your security guide, not my seed settings.</p>
+
+<p>For those with serious concerns about safety, your best bet is to go with a hardened-sources kernel. A standard vanilla kernel is not as secure as a hardened-sources kernel, even with everything turned on.</p>
+
+<p><span class="mag">[ ] Enable access key retention support</span></p>
+
+<p>The Linux key retention service is primarily intended to cache authentication data in the Linux kernel. The service can be used by remote filesystems or other kernel services to manage cryptography, authentication tokens, cross-domain user mappings, and other security concerns.</p>
+
+<p>For those that need this support, turn this setting on.</p>
+
+<p><span class="mag">[ ] Enable the /proc/keys file by which keys may be viewed</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This option turns on support for the /proc/keys file - through which can be listed all the keys on the system that are viewable by the reading process."</p>
+
+<p>Personally, I question the wisdom of making the keys visible.</p>
+
+<p><span class="mag">[ ] Enable different security models</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This allows you to choose different security modules to be configured into your kernel."</p>
+
+<p><span class="mag">--- Enable the securityfs filesystem </span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This will build the securityfs filesystem.  It is currently used by the TPM bios character driver and IMA, an integrity provider. It is not used by SELinux or SMACK."</p>
+
+<p>This option is hardwired into the kernel, even though it is recommended that you say "no" to this option. Confused? Me too.</p>
+
+<p><span class="mag">[ ] Socket and Networking Security Hooks </span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This enables the socket and networking security hooks. If enabled, a security module can use these hooks to implement socket and networking access controls."</p>
+
+<p>To me, this sounds very much like a kernel-based firewall. While I'm sure this is workable, it seems that a well-configured iptables install will do the same thing with fine-grained control.</p>
+
+<p><span class="mag">--- Security hooks for pathname based access control</span></p>
+
+<p>This option is turned on when the <span class="mag">[ ] TOMOYO Linux Support</span> option is enabled.</p>
+
+<p><span class="mag">[ ] File POSIX Capabilities</span></p>
+
+<p>POSIX capabilities break the root privileges into smaller pieces, and allow tasks to run with only a subset of the root user's privileges. File capabilities allow such privileges to be attached to a program, greatly simplifying the use of capabilities.</p>
+
+<p><span class="mag">[ ] Root Plug Support</span></p>
+
+<p>This sample module prevents programs from running as egid==0, or root, without a specific USB device installed. If you have one of those devices, this is where you would enable it to work.</p>
+
+<p><span class="mag">[ ] TOMOYO Linux Support</span></p>
+
+<p>TOMOYO Linux is a security module which focuses on the behavior of a system. A process is created to achieve something. TOMOYO Linux lets each process declare behaviors and resources needed to achieve its purpose (like an immigration officer) and permits only declared behaviors and resources (like an operation watchdog). For more information on TOMOYO Linux, <a href="http://tomoyo.sourceforge.jp/" >follow this link.</a></p>
+
+<p><span class="mag">[ ] Integrity Measurement Architecture(IMA)</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"The Trusted Computing Group(TCG) runtime Integrity Measurement Architecture(IMA) maintains a list of hash values of executables and other sensitive system files, as they are read or executed. If an attacker manages to change the contents of an important system file being measured, we can tell."</p>
+
+<p>For more information, <a href="http://www.usenix.org/events/sec04/tech/sailer.html">click on this link.</a></p>
+
+<p>This is the end of Settings Page 11.</p>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-6605932917682734:tvk0q3m8znk" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="text" name="q" size="40" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+ 
+
+<p align="center"><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <span class="grn">Page 11</span> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<p>Cheers,<br />
+Pappy</p>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6605932917682734";
+/* 728x15, created 1/2/10 */
+google_ad_slot = "0330695922";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
+<div class="footer">
+<p class="home"><a href="index.html">Home</a></p>
+<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> 
+
+<p>Copyright &copy; Bear Upstairs Studio. Original page: 10-07-2010. Page last updated: 11-29-2010. All rights reserved.</p>
+</div>
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+</body>
+</html>

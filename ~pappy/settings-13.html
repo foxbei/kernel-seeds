@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="generator" content="Bluefish 2.0.1" >
+<meta name="keywords" content="linux,kernel,.config,config,linux kernel,linux kernel configuration">
+<title>Kernel Seeds Settings Page 13</title>
+<style type="text/css">
+body		{ color: #fff; background-color: #000; }
+h1, h2, h3, h4, h5	{ text-align: center; }
+img			{ margin: 1em; }
+a			{ color: #999; }
+a:link		{ color: #999; } 
+a:visited	{ color: #fff; }
+
+.banner		{ height: 253px; width: 100%; background-image: url(ns-t3b-big.jpg); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer		{ font-size: x-small; text-align: center; font-style: italic; }
+.home		{ font-style: normal; font-size: large; font-weight: bold; }
+.red	{ color: #f00; }
+.grn		{ color: #0f0; }
+.mag		{ color: #f0f; }
+.wht       { color: #fff; }
+.gry       { color: #999; }
+.yel       { color: #ff0; }
+
+</style>
+</head>
+<body>
+
+ <div class="banner">
+<h1>Kernel Seed Settings</h1>
+</div>
+
+<p align="center"><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<h2><span class="grn">Page 13:</span></h2>
+
+<p>This page covers <span class="mag">Virtualization</span>, and <span class="mag">Library routines</span>.</p>
+
+<h3><span class="mag" align="center">Virtualization</span></h3>
+
+<p align="center"><img src="http://62.3.120.142/~pappy/page_13.png" alt="Virtualization from main page" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up the following sub page:</p>
+
+<!-- DEFINITELY!!!!!!! Don't forget to change up page 9 to look like this one. -->
+
+
+<p align="center"><img src="http://62.3.120.142/~pappy/page_13a.png" alt="Virtualization menu x86" /></p>
+
+<h4><span class="yel">x86</span></h4>
+
+<p align="center"><img src="http://62.3.120.142/~pappy/page_13b.png" alt="Virtualization menu x86_64" /></p>
+
+<h4><span class="yel">x86_64</span></h4>
+
+<p>KVM (Kernel-based Virtual Machine) is a way to use your Linux install to run other operating systems like Windows and other Linux distributions. As such, it is clearly not a thing needed to get a computer up and running Linux alone. Since KVM is <em>not</em> a strict need to get your Linux kernel up and running, it follows I don't support it. <a href="http://www.linux-kvm.org/page/Main_Page">Click here</a> for more information on KVM.</p>
+
+<p><span class="mag">--- Virtualization<br />
+&lt; &gt; Kernel-based Virtual Machine (KVM) support</span></p>
+
+<p>This option provides access to the system hardware through a character device named /dev/kvm.</p>
+
+<p><span class="mag">&lt; &gt; KVM for Intel processors support</span></p>
+
+<p>This option provides support for KVM on Intel processors equipped with the VT (Virtualization Technology) extensions.</p>
+
+<p><span class="mag">&lt; &gt; KVM for AMD processors support</span></p>
+
+<p>This option provides support for KVM on AMD processors equipped with the AMD-V SVM (Secure Virtual Machine) extensions.</p>
+
+<p><span class="mag">[ ] KVM trace support</span></p>
+
+<p>This option allows reading a trace of kvm-related events through relayfs.</p>
+
+<p><span class="yel">x86</span> <span class="mag">&lt; &gt; Linux hypervisor example code</span></p>
+
+<p>This option allows you to run multiple instances of the same x86 Linux kernel, using the "lguest" command.</p>
+
+<p><span class="mag">&lt; &gt; PCI driver for virtio devices (EXPERIMENTAL)</span></p>
+
+<p>Virtio is a Linux standard for network and disk device drivers where just the guest's device driver "knows" it is running in a virtual environment, and cooperates with the hypervisor.</p>
+
+<p><span class="mag">&lt; &gt; Virtio balloon driver (EXPERIMENTAL)</span></p>
+
+<p>This driver supports increasing and decreasing the amount of memory within a KVM guest.</p>
+
+<hr width="75%">
+
+<h3><span class="mag" align="center">Library routines</span></h3>
+
+<p align="center"><img src="http://62.3.120.142/~pappy/page_13c.png" alt="Library routines from main page" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up the following sub page:</p>
+
+<p align="center"><img src="http://62.3.120.142/~pappy/page_13d.png" alt="Library routines menu" /></p>
+
+<p>Cyclic redundancy checking (CRC) is an insecure hash function designed to detect accidental changes to raw computer data. It is commonly used in digital networks and storage devices such as hard disk drives. These options allow for CRC outside the kernel which can be used by userspace programs and hardware devices. <span class="gry">&lt;<span class="red"> H</span><span class="gry">elp &gt</span></span> recommends these options are set as modules.</p>
+
+<p>The entries below describe which devices are covered by which CRC functions. You can turn off options that do not pertain to your system if necessary. When these options are used, it is recommended by <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span> that they be set as modules. Defaults are shown.
+
+<p><span class="mag">&lt;M&gt; CRC-CCITT functions</span></p>
+
+<p>XMODEM, Bluetooth.</p>
+
+<p><span class="mag">&lt;M&gt; CRC16 functions</span></p>
+
+<p>Standard block devices.</p>
+
+<p><span class="mag">&lt; &gt; CRC calculation for the T10 Data Integrity Field</span></p>
+
+<p>SCSI block devices with T10.</p>
+
+<p><span class="mag">-*- CRC ITU-T V.41 functions</span></p>
+
+<p>Modems.</p>
+
+<p><span class="mag">-*- CRC32 functions</span></p>
+
+<p>Ethernet devices, POSIX checksums.</p>
+
+<p><span class="mag">&lt;M&gt; CRC7 functions</span></p>
+
+<p>Telecom.</p>
+
+<p><span class="mag">&lt;M&gt; CRC32c (Castagnoli, et al) Cyclic Redundancy-Check</span></p>
+
+<p>iSCSI and SCTP.</p>
+
+<p>This is the end of page 13.</p>
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-6605932917682734:tvk0q3m8znk" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="text" name="q" size="40" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+<p align="center"><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-09.html">Page 9</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <span class="grn">Page 13</span> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<p>Cheers,<br />
+Pappy</p>
+
+<div class="footer">
+	<p class="home"><a href="index.html">Home</a></p>
+	<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> 
+	<p>Copyright &copy; Bear Upstairs Studio. Original page: 11-29-2010. Page last updated: 11-29-2010. All rights reserved.</p>
+</div>
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" >
+<meta name="generator" content="Bluefish 2.0.1" >
+<title>Kernel Seeds Settings Page 9</title>
+<style type="text/css">
+body		 { color: #fff; background-color: #000; }
+h1, h2, h3, h4, h5	 { text-align: center; }
+img       { margin: 1em; }
+a         { color: #999; }
+a:link    { color: #999; } 
+a:visited { color: #fff; }
+
+.banner   { height: 253px; width: 100%; background-image: url(ns-t3b-big.jpg); background-repeat: no-repeat; padding-top: 0.1em; }
+.footer	 { font-size: x-small; text-align: center; font-style: italic; }
+.home		 { font-style: normal; font-size: large; font-weight: bold; }
+.red	    { color: #f00; }
+.grn		 { color: #0f0; }
+.mag		 { color: #f0f; }
+.wht      { color: #fff; }
+.gry      { color: #999; }
+.yel      { color: #ff0; }
+
+</style>
+</head>
+<body>
+<div class="banner">
+<h1>Kernel Seed Settings</h1>
+</div>
+
+<p><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</b></a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<h2><span class="grn">Page 9:</span></h2>
+
+<p>This page covers <span class="mag">Firmware Drivers</span> and <span class="mag">File systems.</span></p>
+
+<p align="center"><img src="page_9.png" alt="Firmware Drivers from main page" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up the following sub page:</p>
+
+<p align="center"><img src="page_9a.png" alt="Firmware drivers sub page" /></p>
+
+<p><span class="mag">< > BIOS Enhanced Disk Drive calls determine boot disk</span></p>
+
+<p><span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span> pretty much says it all: "This option is experimental and is known to fail to boot on some obscure configurations. Most disk controller BIOS vendors do not yet implement this feature." Since this setting is experimental, known to fail, and not supported, this setting defaults to off.
+
+<p><span class="mag">[ ] Sets default behavior for EDD detection to off</span></p>
+
+<p>This is yet another setting that rode in on the kernel defaults. If you read <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>, you say yes here if you want EDD support disabled, and no if you want it enabled. Having experimented with this setting, I don't see a lot of difference with or without it. For that reason, the default for this setting is off.</p>
+
+<p><span class="mag">< > BIOS update support for DELL systems via sysfs</span></p>
+
+<p>This driver works with Dell OpenManage or Dell Update Packages for updating the BIOS on Dell servers (starting from servers sold since 1999), desktops and notebooks (starting from those sold in 2005). Since this is a one-shot setting, it defaults to off.</p>
+
+<p><span class="mag">< > Dell Systems Management Base Driver</span></p>
+
+According to file Documentation/dcdbas.txt, "Dell OpenManage requires this driver on the following Dell PowerEdge systems: 300, 1300, 1400, 400SC, 500SC, 1500SC, 1550, 600SC, 1600SC, 650, 1655MC, 700, and 750.  Other Dell software such as the open source libsmbios project is expected to make use of this driver, and it may include the use of this driver on other Dell systems. If you have one of these systems and wish to use this, turn it on here. Since this is another one-shot, it defaults to off.
+
+<p><span class="mag">[*] Export DMI identification via sysfs to userspace</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"Say Y here if you want to query SMBIOS/DMI system identification information from userspace through /sys/class/dmi/id/ or if you want DMI-based module auto-loading."</p>
+
+<p>While not fully necessary for proper operation, this setting does allow for a glimpse inside your machine without opening it up. Since that carries a bit of geek coolness in my opinion, this setting defaults to on.</p>
+
+<p><span class="mag">[ ] iSCSI Boot Firmware Table Attributes</span></p>
+
+<p>The iSCSI Boot Firmware Table is a mechanism for the iSCSI tools to extract from the machine NICs the iSCSI connection information so that they can automagically mount the iSCSI share/target. iSCSI is a method of accessing remote drive resources over either a LAN or WAN. If you desire this operation, turn this setting on. Since I have yet to find a reason to use this, this setting defaults to off.</p>
+
+<p><span class="mag">< > iSCSI Boot Firmware Table Attributes module</span></p>
+
+<p>This option enables support for detection and exposing of the iSCSI Boot Firmware Table (iBFT) via sysfs to userspace. Once again, if you wish to use this option, turn this setting on. Since I don't use iSCSI, this setting defaults to off.</p>
+
+<hr width="75%">
+
+<h2>File systems</h2>
+
+<p align="center"><img src="page_9b.png" alt="File systems from main page" /></p>
+
+<p>Arrow key down to the area shown. When you hit <span class="gry">&lt;</span><span class="red">S</span><span class="gry">elect&gt </span>at this point, you will bring up the following sub page:</p>
+
+<p align="center"><img src="page_9c.png" alt="File systems main page" /></p>
+
+<p><span class="mag">&lt;*&gt Second extended fs support<br>
+[ ] Ext2 extended attributes<br>
+[ ] Ext2 POSIX Access Control Lists (NEW)<br>
+[ ] Ext2 Security Labels (NEW)<br>
+[ ] Ext2 execute in place support</span></p>
+
+<p>The ext2 or second extended filesystem is a non-journalling file system. While it is best used on solid state memory devices, as the lack of a journal minimizes read/write cycles, it can also be used for standard hard drives. Since it lacks a journal, it is sensitive to unclean shutdowns. Because of this, it is recommended that if you use this file system, you use it only on the /boot partition, if you set your system up with the same. Note that the two options under <span class="mag">Ext2 extended attributes</span> are turned off unless the option itself is checked</p>
+
+<p><span class="mag">&lt;*&gt Ext3 journalling file system support<br>
+[ ] Default to 'data=ordered' in ext3<br> 
+[ ] Ext3 extended attributes<br>
+[ ] Ext3 POSIX Access Control Lists (NEW)<br>
+[ ] Ext3 Security Labels (NEW)</span></p>
+
+<p>The ext3 or third extended filesystem is a journaled file system. Since it shares everything but the journal with ext2, you can change to ext3 by adding the journal. The journal makes ext3 much more reliable. It also eliminates the need to check the file system after an unclean shutdown. As above, the two options under <span class="mag">Ext3 extended attributes</span> are turned off unless the option itself is checked.</p>
+
+<p><span class="mag">< > The Extended 4 (ext4) filesystem<br>
+[ ] Enable ext4dev compatibility<br>
+[ ] Ext4 extended attributes (NEW)<br>
+[ ] Ext4 POSIX Access Control Lists<br>
+[ ] Ext4 Security Labels</span></p>
+
+<p>Ext4 is the next generation of extended file system. It was introduced with kernel version 2.6.28. It has many advantages over ext3 in performance and file/file system sizes. Since it is a newer file system, and still has some bugs present, I don't support or recommend it. For this reason, this setting defaults to off.
+
+<p><span class="mag">[ ] JBD (ext3) debugging support</span></p>
+
+<p>This is a debugging adjunct to ext3 file system. If you have ext3 issues, you can turn this setting on, and troubleshoot your ext3 file system. This setting defaults to off. Turn it on if you are having issues.</p>
+
+<p><span class="mag">&lt;*&gt Reiserfs support<br>
+[ ] Enable reiserfs debug mode<br>
+[ ] Stats in /proc/fs/reiserfs<br>
+[ ] ReiserFS extended attributes<br>
+[ ] ReiserFS POSIX Access Control Lists (NEW)<br>
+[ ] ReiserFS Security Labels (NEW)</span></p>
+
+<p>ReiserFS, now also known as Resiser3, is a general-purpose, journaled computer file system designed and implemented by a team at Namesys led by Hans Reiser. It's biggest claim to fame is its ability to store small files very efficiently. It is also good performance-wise as well. Since it's my preferred file system, this setting defaults to on.</p>
+
+<p><span class="mag">< > JFS filesystem support
+[ ] JFS POSIX Access Control Lists<br>
+[ ] JFS Security Labels<br>
+[ ] JFS debugging<br>
+[ ] JFS statistics</span></p>
+
+<p>The Journaled File System (JFS) provides a log-based, byte-level file system that was developed for transaction-oriented, high performance systems. Scalable and robust, its advantage over non-journaled file systems is its quick restart capability: JFS can restore a file system to a consistent state in a matter of seconds or minutes. If you want to use JFS, turn the settings on here. This setting defaults to off.</p>
+
+<p><span class="mag">< > XFS filesystem support
+[ ] XFS Quota support<br>
+[ ] XFS POSIX ACL support<br>
+[ ] XFS Realtime subvolume support<br>
+[ ] XFS Debugging support (EXPERIMENTAL)</span></p>
+
+<p>XFS is a high-performance journaling file system created by Silicon Graphics, originally for their IRIX operating system and later ported to Linux kernel. XFS is particularly proficient at handling large files and at offering smooth data transfers. This setting defaults to off.</p>
+
+<p><span class="mag">< > OCFS2 file system support<br>
+< > O2CB Kernelspace Clustering (NEW)<br>
+[ ] OCFS2 statistics (NEW)<br>
+[ ] OCFS2 logging support (NEW)<br>
+[ ] OCFS2 expensive checks<br>
+[ ] OCFS2 POSIX Access Control Lists</span></p>
+
+<p>OCFS2 is a POSIX-compliant shared-disk cluster file system for Linux capable of providing both high performance and high availability. To find more information on OCFS2, <a href="http://oss.oracle.com/projects/ocfs2/" target="_blank">click here.</a></p>
+
+<p><span class="mag">< > Btrfs filesystem (EXPERIMENTAL) Unstable disk format<br>
+[ ] Btrfs POSIX Access Control Lists</span></p>
+
+<p>Btrfs is under heavy development, but every effort is being made to keep the filesystem stable and fast. Be that as it may, I don't recommend Btrfs for important data, as it is ostensibly unstable at the time of this writing. This setting defaults to off.</p>
+
+<p><span class="mag">[*] Dnotify support<br>
+[*] Inotify file change notification support<br>
+[*] Inotify support for userspace </span></p>
+
+<p>These three settings are related in function as they allow file change notification information into userspace. This is used by numerous packages. Some packages support only one of the options. For that reason, all these settings are turned on.</p>
+
+<p><span class="mag">[ ] Quota support</span></p>
+
+<p>Turning this setting on allows you to set per user upper limits for disk usage. This setting currently supports ext2, ext3, and reiserfs. If you have these file systems set up and need to set quotas, this is the setting to use. Since disk quotas have nothing to do with making a computer operate properly under Linux, this setting defaults to off.
+
+<p><span class="mag">< > Kernel automounter support<br>
+&lt;*&gt Kernel automounter version 4 support (also supports v3)</span></p>
+
+<p>The automounter is a tool to automatically mount remote file systems (read NFS) on demand. This is a desired state of operation. Since version 4 supports version 3, version 3 defaults to off and version 4 defaults to on. I haven't seen any problems running with both compiled in, so this one is left up to you. I set it up this way for brevity.</p>
+
+<p><span class="mag">&lt;M&gt FUSE (Filesystem in Userspace) support</span></p>
+
+<p>FUSE allows you to create and use a fully functional file system in userspace. This can be anything from complete read and write support for the NTFS file system via ntfs-3g to file systems created via ssh sessions, and lots of other things in between. Since FUSE is incredibly useful, and since I dual boot, this setting defaults to on.</p>
+
+<p>Notes on FUSE: If you're going to use it, set it as a module. When FUSE is compiled into the kernel, it cannot have arguments passed to it properly. This will cause failure of your FUSE dependent packages. For most applications, you will also need to install libfuse.</p>
+
+<p><span class="mag">< > Character device in Userpace support</span></p>
+
+<p>This FUSE extension allows character devices to be implemented in userspace. This is relatively new code, and as of yet, I have not found a need for it. For that reason, it defaults to off.</p>
+
+<p><span class="mag">Caches ---></span></p>
+
+<p>The <span class="mag">Caches</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">< > General filesystem local caching manager<br>
+[ ] Gather statistical information on local caching<br>
+[ ] Gather latency information on local caching<br>
+[ ] Debug FS-Cache<br>
+< > Filesystem caching on files<br>
+[ ] Debug CacheFiles<br>
+[ ] Gather latency information on CacheFiles</span></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"This option enables a generic filesystem caching manager that can be used by various network and other filesystems to cache data locally. Different sorts of caches can be plugged in, depending on the resources available."</p>
+
+<p>At this time, I have not tested this code. This setting will be undergoing testing soon.</p>
+
+<p><span class="mag">CD-ROM/DVD Filesystems ---></span></p>
+
+<p>The <span class="mag">CD-ROM/DVD Filesystems</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">&lt;*&gt ISO 9660 CDROM file system support<br>
+[*] Microsoft Joliet CDROM extensions<br>
+[*] Transparent decompression extension<br>
+&lt;*&gt UDF file system support</span></p>
+
+<p>The kernel seed defaults are as follows:</p>
+
+<p><span class="mag">&lt;*&gt ISO 9660 CDROM file system support</span></p>
+
+<p>ISO9660 is THE standard CD file system. Without this, your CDROM drive becomes a cup holder, or perhaps you'll get lucky and find a Linux package that takes the audio out from the CDROM drive. Because this is another essential setting, it defaults to on.</p>
+
+<p><span class="mag">[*] Microsoft Joliet CDROM extensions</span></p>
+
+<p>If you wish to be able to read Microsoft Joliet CDROM's, turn this setting on. Since most CD ROM disks out there are made with Joliet, this is another essential setting. This setting defaults to on.</p>
+
+<p><span class="mag">[*] Transparent decompression extension</span></p>
+
+<p>Of all the settings here, this is the least needed. This is a Linux-specific extension to RockRidge which lets you store data in compressed form on a CD-ROM and have it transparently decompressed when the CD-ROM is accessed. This setting is a "just in case," setting. While it's not likely you'll find a lot of these roaming around, this setting defaults to on in case it is needed.</p>
+
+<p><span class="mag">&lt;*&gt UDF file system support</span></p>
+
+<p>This is another essential setting if you wish to read or write a DVD over 2 Gigabytes in size. Since most DVD's clock in over two gigs, this setting defaults to on.</p>
+
+<p><span class="mag">DOS/FAT/NT Filesystems ---></span></p>
+
+<p>The <span class="mag">DOS/FAT/NT Filesystems</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">&lt;*&gt MSDOS fs support<br>
+&lt;*&gt VFAT (Windows-95) fs support<br>
+(437) Default codepage for FAT<br>
+(iso8859-1) Default iocharset for FAT<br>
+< > NTFS file system support<br>
+[ ] NTFS debugging support<br>
+[ ] NTFS write support</span></p>
+
+<p>The kernel seed defaults are as follows:</p>
+
+<p><span class="mag">&lt;*&gt MSDOS fs support<br>
+&lt;*&gt VFAT (Windows-95) fs support<br>
+(437) Default codepage for FAT</span></p>
+
+<p>These settings are turned on as a service to those who might have a DOS FAT partition. They can be turned off without issue if you have no FAT partitions.</p>
+
+<p><span class="mag">Pseudo filesystems ---></span></p>
+
+<p>The <span class="mag">Pseudo filesystems</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">-*- /proc file system support<br>
+[*] /proc/kcore support<br>
+[*] Virtual memory file system support (former shm fs)<br>
+[*] Tmpfs POSIX Access Control Lists<br>
+[*] HugeTLB file system support<br>
+< > Userspace-driven configuration filesystem</span></p>
+
+<p>The kernel seed defaults are as follows:</p>
+
+<p><span class="mag">-*- /proc file system support</span></p>
+
+<p>This setting is so important it's hard wired into the kernel. A Linux install without the /proc directory is a Linux install that doesn't work.</p>
+
+<p><span class="mag">[*] /proc/kcore support</span></p>
+
+<p>/proc/kcore is like an "alias" for the memory in your computer. I'd say that makes it pretty important, and forces this setting to default to on.</p>
+
+<p><span class="mag">[*] Virtual memory file system support (former shm fs)</span></p>
+
+<p>Once again, we have an essential setting. Tmpfs is a file system which keeps all files in virtual memory. Using tmpfs file systems can radically increase speed for disk intensive operations. For Gentoo users, one of those disk intensive operations is compilation of software. Because this setting is important, it defaults to on.</p>
+
+<p><span class="mag">[*] Tmpfs POSIX Access Control Lists</span></p>
+
+<p>This setting is definitely going to change in the next iteration. For now, it defaults to on.</p>
+
+<p><span class="mag">[*] HugeTLB file system support</span></p>
+
+<p>This setting is going to be turned off in the next iteration. Research has shown it to be unneeded for basic operation.</p>
+
+<p><span class="mag">< > Userspace-driven configuration filesystem</sp an></p>
+
+<p>According to <span class="gry">&lt;</span><span class="red"> H</span><span class="gry">elp &gt</span>,"Both sysfs and configfs can and should exist together on the same system. One is not a replacement for the other."</p>
+
+<p>While this is true, I haven't seen any issues as a result of this setting's condition. While this setting will most likely be tested in the near future, it is not currently slated for doing so at this time.</p>
+
+<p><span class="mag">[ ] Miscellaneous filesystems---></span></p>
+
+<p>The <span class="mag">Miscellaneous filesystems</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">--- Miscellaneous filesystems<br>
+< > ADFS file system support (EXPERIMENTAL)<br>
+[ ] ADFS write support (DANGEROUS)<br>
+< > Amiga FFS file system support (EXPERIMENTAL)<br>
+< > Apple Macintosh file system support (EXPERIMENTAL)<br>
+< > Apple Extended HFS file system support<br>
+< > BeOS file system (BeFS) support (read only) (EXPERIMENTAL)<br>
+[ ] Debug BeFS<br>
+< > BFS file system support (EXPERIMENTAL)<br>
+< > EFS file system support (read only) (EXPERIMENTAL)<br>
+< > Compressed ROM file system support (cramfs)<br>
+< > SquashFS 4.0 - Squashed file system support (NEW)<br>
+< > FreeVxFS file system support (VERITAS VxFS(TM) compatible)<br>
+< > Minix file system support<br>
+< > SonicBlue Optimized MPEG File System support<br>
+< > OS/2 HPFS file system support<br>
+< > QNX4 file system support (read only)<br>
+< > ROM file system support<br>
+RomFS backing stores (Block device-backed ROM file system support)<br>
+< > System V/Xenix/V7/Coherent file system support<br>
+< > UFS file system support (read only)<br>
+[ ] UFS file system write support (DANGEROUS)<br>
+[ ] UFS debugging<br>
+< > NILFS2 file system support (EXPERIMENTAL)</span></p>
+
+<p>Since none of the above file systems are required for proper operation, these settings default to off. If you need support for any of the listed file systems, turn on support.</p>
+
+<p><span class="mag">[*] Network File Systems---></span></p>
+
+<p>The <span class="mag">Network File Systems</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">--- Network File Systems<br>
+&lt;*&gt NFS client support<br>
+[*] NFS client support for NFS version 3<br>
+[ ] NFS client support for the NFSv3 ACL protocol extension<br>
+[ ] NFS client support for NFS version 4 (EXPERIMENTAL)<br>
+[ ] NFS client support for NFSv4.1 (DEVELOPER ONLY)<br>
+[*] Root file system on NFS<br>
+&lt;*&gt NFS server support<br>
+[*] NFS server support for NFS version 3<br>
+[ ] NFS server support for the NFSv3 ACL protocol extension<br>
+[ ] NFS server support for NFS version 4 (EXPERIMENTAL)<br>
+--- Secure RPC: Kerberos V mechanism (EXPERIMENTAL)<br>
+< > Secure RPC: SPKM3 mechanism (EXPERIMENTAL)<br>
+< > SMB file system support (OBSOLETE, please use CIFS)<br>
+[ ] Use a default NLS<br>
+(cp437) Default Remote NLS Option (NEW)<br>
+&lt;*&gt CIFS support (advanced network filesystem, SMBFS successor)<br>
+[ ] CIFS statistics<br>
+[ ] Extended statistics<br>
+[ ] Support legacy servers which use weaker LANMAN security<br>
+[ ] Kerberos/SPNEGO advanced session setup (NEW)<br>
+[ ] CIFS extended attributes<br>
+[ ] CIFS POSIX Extensions<br>
+[ ] Enable additional CIFS debugging routines<br>
+[ ] DFS feature support<br>
+[ ] CIFS Experimental Features (EXPERIMENTAL)<br>
+< > NCP file system support (to mount NetWare volumes)<br>
+[ ] Packet signatures<br>
+[ ] Proprietary file locking<br>
+[ ] Clear remove/delete inhibit when needed<br>
+[ ] Use NFS namespace if available<br>
+[ ] Use LONG (OS/2) namespace if available<br>
+[ ] Lowercase DOS filenames<br>
+[ ] Use Native Language Support<br>
+[ ] Enable symbolic links and execute flags<br>
+< > Coda file system support (advanced network fs)<br>
+< > Andrew File System support (AFS) (EXPERIMENTAL)<br>
+[ ] AFS dynamic debugging</span></p>
+
+<p>The kernel seed defaults are as follows:</p>
+
+<p><span class="mag">&lt;*&gt NFS client support<br>
+[*] NFS client support for NFS version 3</span></p>
+
+<p>These settings set your machine up as an NFS-3 client, ie. it receives files via the NFS-3 protocol from other machines in your network. This is an essential setting if you wish to receive files from other machines on your network that are configured as servers. For obvious reasons, this setting defaults to on.</p>
+
+<p><span class="mag">&lt;*&gt NFS server support<br>
+[*] NFS server support for NFS version 3</span></p>
+
+<p>These settings set your machine up as an NFS-3 server, ie. it sends files via the NFS-3 protocol to other NFS machines in your network. This is an essential setting if you wish to send files to other machines on your network that are configured as clients. For obvious reasons, this setting also defaults to on. Note you will also need nfs-utils, and depending on your setup, autofs as well.</p>
+
+<p><span class="mag">&lt;*&gt CIFS support (advanced network filesystem, SMBFS successor)</span></p>
+
+<p>This setting allows you to share files and printers with Windows based machines. This setting is a must if you wish to be able to access Windows shares, or share files and printers on your Linux machine. The samba program suite is also required, as is CUPS for printer sharing. Since I have Windows machines on my network, this setting defaults to on.</p>
+
+<p><span class="mag">Partition Types---></span></p>
+
+<p>The <span class="mag">Partition Types</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">[ ] Advanced partition selection<br>
+[ ] Acorn partition support<br>
+[ ] Cumana partition support<br>
+[ ] EESOX partition support<br>
+[ ] ICS partition support<br>
+[ ] Native filecore partition support<br>
+[ ] PowerTec partition support<br>
+[ ] RISCiX partition support<br>
+[ ] Alpha OSF partition support<br>
+[ ] Amiga partition table support<br>
+[ ] Atari partition table support<br>
+[ ] Macintosh partition map support<br>
+[ ] PC BIOS (MSDOS partition tables) support (NEW)<br>
+[ ] BSD disklabel (FreeBSD partition tables) support<br>
+[ ] Minix subpartition support<br>
+[ ] Solaris (x86) partition table support<br>
+[ ] Unixware slices support<br>
+[ ] Windows Logical Disk Manager (Dynamic Disk) support<br>
+[ ] Windows LDM extra logging<br>
+[ ] SGI partition support<br>
+[ ] Ultrix partition table support<br>
+[ ] Sun partition tables support<br>
+[ ] Karma Partition support<br>
+[ ] EFI GUID Partition support<br>
+[ ] SYSV68 partition table support</span></p>
+
+<p>Turn these on if and only if you have the described partitions, and wish to access them. Note, you do not have to turn the <span class="mag">[*] PC BIOS (MSDOS partition tables) support (NEW)</span> setting on in order to access MSDOS paritions on your drive(s) as long as you have <span class="mag">MSDOS fs support</span> turned on under <span class="mag">DOS/FAT/NT Filesystems</span>. This is a common mistake. While it's not a serious error, it shows the amount of confusion that exists over certain kernel settings. Since none of the above are required for the standard PC to work with Linux, these settings default to off.</p>
+
+<p><span class="mag">Native language support ---></span></p>
+
+<p>The <span class="mag"></span> settings tree is as follows:</span></p>
+
+<p><span class="mag">--- Native language support<br>
+(utf8) Default NLS Option<br>
+&lt;*&gt Codepage 437 (United States, Canada)<br>
+< > Codepage 737 (Greek)<br>
+< > Codepage 775 (Baltic Rim)<br>
+< > Codepage 850 (Europe)<br>
+< > Codepage 852 (Central/Eastern Europe)<br>
+< > Codepage 855 (Cyrillic)<br>
+< > Codepage 857 (Turkish)<br>
+< > Codepage 860 (Portuguese)<br>
+< > Codepage 861 (Icelandic)<br>
+< > Codepage 862 (Hebrew)<br>
+< > Codepage 863 (Canadian French)<br>
+< > Codepage 864 (Arabic)<br>
+< > Codepage 865 (Norwegian, Danish)<br>
+< > Codepage 866 (Cyrillic/Russian)<br>
+< > Codepage 869 (Greek)<br>
+< > Simplified Chinese charset (CP936, GB2312)<br>
+< > Traditional Chinese charset (Big5)<br>
+< > Japanese charsets (Shift-JIS, EUC-JP)<br>
+< > Korean charset (CP949, EUC-KR)<br>
+< > Thai charset (CP874, TIS-620)<br>
+< > Hebrew charsets (ISO-8859-8, CP1255)<br>
+< > Windows CP1250 (Slavic/Central European Languages)<br>
+< > Windows CP1251 (Bulgarian, Belarusian)<br>
+&lt;*&gt ASCII (United States)<br>
+&lt;*&gt NLS ISO 8859-1(Latin 1; Western European Languages)<br>
+< > NLS ISO 8859-2(Latin 2; Slavic/Central European Languages)<br>
+< > NLS ISO 8859-3(Latin 3; Esperanto, Galician, Maltese, Turkish)<br>
+< > NLS ISO 8859-4(Latin 4; old Baltic charset)<br>
+< > NLS ISO 8859-5(Cyrillic)<br>
+< > NLS ISO 8859-6(Arabic)<br>
+< > NLS ISO 8859-7(Modern Greek)<br>
+< > NLS ISO 8859-9(Latin 5; Turkish)<br>
+< > NLS ISO 8859-13 (Latin 7; Baltic)<br>
+< > NLS ISO 8859-14 (Latin 8; Celtic)<br>
+< > NLS ISO 8859-15 (Latin 9; Western European Languages with Euro)<br>
+< > NLS KOI8-R (Russian)<br>
+< > NLS KOI8-U/RU (Ukrainian, Belarusian)<br>
+&lt;*&gt NLS UTF-8</span></p>
+
+<p>The default for this is UTF-8. Other settings are as listed. If you need to add support for your native language, select the option desired.</p>
+
+<p><span class="mag"><*> Distributed Lock Manager (DLM) ---></span></p>
+
+<p>The <span class="mag">Distributed Lock Manager</span> settings tree is as follows:</span></p>
+
+<p><span class="mag">--- Distributed Lock Manager (DLM)<br>
+[*]   DLM debugging</span></p>
+
+<p>A distributed lock manager (DLM) provides distributed applications with a means to synchronize their access to shared resources. While there are situations where this is a good thing, it is not necessary in order to get the computer to operate under Linux. For that reason, this setting defaults to off.</p>
+
+<p>This is the end of page 9.
+
+<style type="text/css">
+@import url(http://www.google.com/cse/api/branding.css);
+</style>
+<div class="cse-branding-right" style="background-color:#000000;color:#FFFFFF">
+  <div class="cse-branding-form">
+    <form action="http://www.google.com/cse" id="cse-search-box" target="_blank">
+      <div>
+        <input type="hidden" name="cx" value="partner-pub-6605932917682734:tvk0q3m8znk" />
+        <input type="hidden" name="ie" value="ISO-8859-1" />
+        <input type="text" name="q" size="40" />
+        <input type="submit" name="sa" value="Search" />
+      </div>
+    </form>
+  </div>
+  <div class="cse-branding-logo">
+    <img src="http://www.google.com/images/poweredby_transparent/poweredby_000000.gif" alt="Google" />
+  </div>
+  <div class="cse-branding-text">
+    Custom Search
+  </div>
+</div>
+
+
+<p><h5><strong><a href="settings-01.html">Page 1</a> <a href="settings-02.html">Page 2</a> <a href="settings-03.html">Page 3</b></a> <a href="settings-04.html">Page 4</a> <a href="settings-05.html">Page 5</a> <a href="settings-06.html">Page 6</a> <a href="settings-07.html">Page 7</a> <a href="settings-08.html">Page 8</a> <span Class="grn">Page 9</span> <a href="settings-10.html">Page 10</a> <a href="settings-11.html">Page 11</a> <a href="settings-12.html">Page 12</a> <a href="settings-13.html">Page 13</a> <a href="settings-reference.html">Reference Page</a></strong></h5></p>
+
+<p>Cheers,<br />
+Pappy</p>
+
+<script type="text/javascript"><!--
+google_ad_client = "pub-6605932917682734";
+/* 728x15, created 1/2/10 */
+google_ad_slot = "0330695922";
+google_ad_width = 728;
+google_ad_height = 15;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+<div class="footer">
+<p class="home"><a href="index.html">Home</a></p>
+<p>This page was hand-coded by Pappy McFae. Seed graphic by jason at <a href="http://www.feedimage.info/">feedimage.info</a>.</p> 
+
+<p>Copyright &copy; Bear Upstairs Studio. Original page: 04-14-2010. Page last updated: 11-29-2010. All rights reserved.</p>
+</div>
+
+<!-- Start of StatCounter Code -->
+<script type="text/javascript">
+var sc_project=5486445; 
+var sc_invisible=1; 
+var sc_partition=60; 
+var sc_click_stat=1; 
+var sc_security="f144334b"; 
+</script>
+
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script><noscript><div
+class="statcounter"><a title="myspace visitor tracker"
+href="http://www.statcounter.com/myspace/"
+target="_blank"><img class="statcounter"
+src="http://c.statcounter.com/5486445/0/f144334b/1/"
+alt="myspace visitor tracker" ></a></div></noscript>
+<!-- End of StatCounter Code -->
+
+</body>
+</html>
